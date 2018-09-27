@@ -105,9 +105,7 @@ class WpProQuiz_Model_CommentMapper extends WpProQuiz_Model_Mapper
 		$results = $this->_wpdb->get_results(
 			$this->_wpdb->prepare(
 				"SELECT
-					comment.*,
-					comment.create_time AS min_create_time,
-					comment.create_time AS max_create_time
+					comment.*
 				FROM 
 					{$this->_tableComment} AS comment 
 				WHERE 
