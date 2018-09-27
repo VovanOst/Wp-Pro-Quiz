@@ -267,7 +267,57 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                             {
                                 $this->showUserComment($item);
                             }
-                           ?><a class="button-secondary wpProQuiz_update1" href="#">Добавить комментарий</a><?php
+                            ?>
+                         <tr style="display: table-row">
+                            <th colspan="9">
+                                <div class="classic_answer" style="display: block;">
+                                    <ul class="answerList ui-sortable">
+                                        <li style="border-bottom:1px dotted #ccc; padding-bottom: 5px; background-color: whiteSmoke;" id="TEST">
+                                            <table style="width: 100%;border: 1px solid #9E9E9E;border-collapse: collapse; margin-bottom: 20px;">
+                                                <thead>
+                                                <tr>
+                                                    <th width="160px" style=" border-right: 1px solid #9E9E9E; padding: 5px; ">Настройки</th>
+                                                    <th style="padding: 5px;">Ответ</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td style="border-right: 1px solid #9E9E9E; padding: 5px; vertical-align: top;">
+                                                        <div style="display: none;">
+                                                            <label>
+                                                                <input type="radio" name="answerData[][correct]" value="1" class="wpProQuiz_classCorrect wpProQuiz_checkbox">
+                                                                Правильно                                </label>
+                                                        </div>
+                                                        <div style="padding-top: 5px;">
+                                                            <label>
+                                                                <input type="checkbox" class="wpProQuiz_checkbox" name="answerData[][html]" value="1">
+                                                                Разрешить HTML                                </label>
+                                                        </div>
+                                                        <div style="padding-top: 5px;" class="wpProQuiz_answerPoints">
+                                                            <label>
+                                                                <input type="number" min="0" class="small-text wpProQuiz_points" name="answerData[][points]" value="1">
+                                                                Баллы                                </label>
+                                                        </div>
+                                                    </td>
+                                                    <td style="padding: 5px; vertical-align: top;">
+                                                        <textarea rows="2" cols="50" class="large-text wpProQuiz_text" name="answerData[][answer]" style="resize:vertical;"> </textarea>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <input type="button" name="submit" class="button-primary deleteAnswer" value="Удалить ответ">
+                                            <input type="button" class="button-secondary addMedia" value="Добавить медиафайл">
+                                            <a href="#" class="button-secondary wpProQuiz_move ui-sortable-handle" style="cursor: move;">Переместить</a>
+
+                                        </li>
+                                    </ul>
+                                        <a class="button-secondary wpProQuiz_update1" href="#">Обновить</a>
+                                </div>
+                            </th>
+                        </tr>
+
+                        <?php
                     }
                 }
 
