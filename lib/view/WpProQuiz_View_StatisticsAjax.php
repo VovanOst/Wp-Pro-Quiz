@@ -267,7 +267,7 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                             {
                                 $this->showUserComment($item);
                             }
-                           
+                           ?><a class="button-secondary wpProQuiz_update1" href="#">Добавить комментарий</a><?php
                     }
                 }
 
