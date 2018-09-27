@@ -264,8 +264,10 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                             </th>
                         </tr>
                         <?php foreach($this->CommentModel as $item)
-                            {
-                                $this->showUserComment($item);
+                            {   if($item->getQuestionId()==$q['question_id'])
+                                {
+                                                                    $this->showUserComment($item);
+                                     }
                             }
                             ?>
                          <tr style="display: table-row">
@@ -285,22 +287,22 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                                                     <td style="border-right: 1px solid #9E9E9E; padding: 5px; vertical-align: top;">
                                                         <div style="display: none;">
                                                             <label>
-                                                                <input type="radio" name="answerData[][correct]" value="1" class="wpProQuiz_classCorrect wpProQuiz_checkbox">
+                                                                <input type="radio" name="commentrData[][correct]" value="1" class="wpProQuiz_classCorrect wpProQuiz_checkbox">
                                                                 Правильно                                </label>
                                                         </div>
                                                         <div style="padding-top: 5px;">
                                                             <label>
-                                                                <input type="checkbox" class="wpProQuiz_checkbox" name="answerData[][html]" value="1">
+                                                                <input type="checkbox" class="wpProQuiz_checkbox" name="commentrData[][html]" value="1">
                                                                 Разрешить HTML                                </label>
                                                         </div>
                                                         <div style="padding-top: 5px;" class="wpProQuiz_answerPoints">
                                                             <label>
-                                                                <input type="number" min="0" class="small-text wpProQuiz_points" name="answerData[][points]" value="1">
+                                                                <input type="number" min="0" class="small-text wpProQuiz_points" name="commentrData[][points]" value="1">
                                                                 Баллы                                </label>
                                                         </div>
                                                     </td>
                                                     <td style="padding: 5px; vertical-align: top;">
-                                                        <textarea rows="2" cols="50" class="large-text wpProQuiz_text" name="answerData[][answer]" style="resize:vertical;"> </textarea>
+                                                        <textarea rows="2" cols="50" class="large-text wpProQuiz_text" name="commentrData[][answer]" style="resize:vertical;"> </textarea>
                                                     </td>
                                                 </tr>
                                                 </tbody>
@@ -564,17 +566,17 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                                     <td style="border-right: 1px solid #9E9E9E; padding: 5px; vertical-align: top;">
                                         <div style="display: none;">
                                             <label>
-                                                <input type="radio" name="answerData[][correct]" value="1" class="wpProQuiz_classCorrect wpProQuiz_checkbox">
+                                                <input type="radio" name="commentrData[][correct]" value="1" class="wpProQuiz_classCorrect wpProQuiz_checkbox">
                                                 Правильно                                </label>
                                         </div>
                                         <div style="padding-top: 5px;">
                                             <label>
-                                                <input type="checkbox" class="wpProQuiz_checkbox" name="answerData[][html]" value="1">
+                                                <input type="checkbox" class="wpProQuiz_checkbox" name="commentrData[][html]" value="1">
                                                 <?php echo $CommentItem->getQuestionId();  ?>                                </label>
                                         </div>
                                         <div style="padding-top: 5px;" class="wpProQuiz_answerPoints">
                                             <label>
-                                                <input type="number" min="0" class="small-text wpProQuiz_points" name="answerData[][points]" value="1">
+                                                <input type="number" min="0" class="small-text wpProQuiz_points" name="commentrData[][points]" value="1">
                                                 Баллы                                </label>
                                         </div>
                                     </td>
