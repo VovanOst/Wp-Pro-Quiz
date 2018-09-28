@@ -297,9 +297,9 @@ class WpProQuiz_View_QuizOverall extends WpProQuiz_View_View
         $this->showSetQuizCategoryListBox();
         ?>
 
-        <div id="wpProQuiz_tab_donat" style="display: none;" class="hide-if-no-js screen-meta-toggle">
+        <!--div id="wpProQuiz_tab_donat" style="display: none;" class="hide-if-no-js screen-meta-toggle">
             <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KCZPNURT6RYXY" class="button show-settings" target="_blank"><?php _e('Donate', 'wp-pro-quiz'); ?></a>
-        </div>
+        </div-->
 
         <div class="wrap wpProQuiz_quizOverall" style="">
             <h2>
