@@ -3120,14 +3120,28 @@ jQuery(document).ready(function ($) {
                                 return false;
                             });
 
+                            content.find('.wpProQuiz_deleteAnswer').click(function () {
+                                var li = $(this).parent();
+                                if (li.parent().children().length < 2)
+                                    return false;
+                                li.remove();
+                                return false;
+                            });
+
                             content.find('.wpProQuiz_update1').click(function () {
-                                 var ul = $(this).siblings('ul');
+                                var ul = $(this).siblings('ul');
                                 var clone = ul.find('li:eq(0)').clone();
 
                                 clone.find('.wpProQuiz_checkbox').removeAttr('checked');
                                 clone.find('.wpProQuiz_text').val('');
                                 clone.find('.wpProQuiz_points').val(1);
-                                clone.find('.deleteAnswer').click(methode.answerRemove);
+                                clone.find('.wpProQuiz_deleteAnswer').click(function () {
+                                    var li = $(this).parent();
+                                    if (li.parent().children().length < 2)
+                                        return false;
+                                    li.remove();
+                                    return false;
+                                });
                                 clone.find('.addMedia').click(methode.addMediaClick);
 
                                 clone.appendTo(ul);

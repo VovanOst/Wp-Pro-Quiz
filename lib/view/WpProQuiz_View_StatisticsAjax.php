@@ -308,13 +308,13 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                                                 </tbody>
                                             </table>
 
-                                            <input type="button" name="submit" class="button-primary deleteAnswer" value="Удалить ответ">
+                                            <input type="button" name="submit" class="button-primary wpProQuiz_deleteAnswer" value="Удалить ответ">
                                             <input type="button" class="button-secondary addMedia" value="Добавить медиафайл">
                                             <a href="#" class="button-secondary wpProQuiz_move ui-sortable-handle" style="cursor: move;">Переместить</a>
 
                                         </li>
                                     </ul>
-                                        <a class="button-secondary wpProQuiz_update1" href="#">Обновить</a>
+                                        <a class="button-secondary wpProQuiz_update1" href="#">Добавить комментарий</a>
                                 </div>
                             </th>
                         </tr>
@@ -589,7 +589,7 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                                 </tbody>
                                 </table>
 
-                                    <input type="button" name="submit" class="button-primary deleteAnswer" value="Удалить ответ">
+                                    <input type="button" name="submit" class="button-primary wpProQuiz_deleteAnswer" value="Удалить ответ">
                                     <input type="button" class="button-secondary addMedia" value="Добавить медиафайл">
                                     <a href="#" class="button-secondary wpProQuiz_move ui-sortable-handle" style="cursor: move;">Переместить</a>
 
