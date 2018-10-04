@@ -272,7 +272,7 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                             ?>
                          <tr style="display: table-row">
                             <th colspan="9">
-                                <div class="classic_answer" style="display: block;">
+                                <div class="classic_answer" data-questionid="<?php echo $q['question_id']; ?>" style="display: block;">
                                     <ul class="answerList ui-sortable">
                                         <li style="border-bottom:1px dotted #ccc; padding-bottom: 5px; background-color: whiteSmoke;" id="TEST">
                                             <table style="width: 100%;border: 1px solid #9E9E9E;border-collapse: collapse; margin-bottom: 20px;">
@@ -287,22 +287,22 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                                                     <td style="border-right: 1px solid #9E9E9E; padding: 5px; vertical-align: top;">
                                                         <div style="display: none;">
                                                             <label>
-                                                                <input type="radio" name="commentrData[][correct]" value="1" class="wpProQuiz_classCorrect wpProQuiz_checkbox">
+                                                                <input type="radio" name="commentData[][correct]" value="1" class="wpProQuiz_classCorrect wpProQuiz_checkbox">
                                                                 Правильно                                </label>
                                                         </div>
                                                         <div style="padding-top: 5px;">
                                                             <label>
-                                                                <input type="checkbox" class="wpProQuiz_checkbox" name="commentrData[][html]" value="1">
+                                                                <input type="checkbox" class="wpProQuiz_checkbox" name="commentData[][html]" value="1">
                                                                 Разрешить HTML                                </label>
                                                         </div>
                                                         <div style="padding-top: 5px;" class="wpProQuiz_answerPoints">
                                                             <label>
-                                                                <input type="number" min="0" class="small-text wpProQuiz_points" name="commentrData[][points]" value="1">
+                                                                <input type="number" min="0" class="small-text wpProQuiz_points" name="commentData[][points]" value="1">
                                                                 Баллы                                </label>
                                                         </div>
                                                     </td>
                                                     <td style="padding: 5px; vertical-align: top;">
-                                                        <textarea rows="2" cols="50" class="large-text wpProQuiz_text" name="commentrData[][answer]" style="resize:vertical;"> </textarea>
+                                                        <textarea rows="2" cols="50" class="large-text wpProQuiz_text" name="commentData[][comment]" style="resize:vertical;"> </textarea>
                                                     </td>
                                                 </tr>
                                                 </tbody>
@@ -383,6 +383,12 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
         <div style="margin-top: 10px;">
             <div style="float: left;">
                 <a class="button-secondary wpProQuiz_update" href="#"><?php _e('Refresh', 'wp-pro-quiz'); ?></a>
+            </div>
+             <div style="float: left;">
+                <?php if (current_user_can('wpProQuiz_reset_statistics')) { ?>
+                    <a class="button-secondary" href="#" id="wpProQuiz_saveComment"><?php _e('Сохранить',
+                            'wp-pro-quiz'); ?></a>
+                <?php } ?>
             </div>
             <div style="float: right;">
                 <?php if (current_user_can('wpProQuiz_reset_statistics')) { ?>
@@ -546,11 +552,11 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
         <?php
     }
 
-    private function showUserComment($CommentItem)
+    private function showUserComment($CommentItem,$questionid)
     {
         ?> <tr style="display: table-row">
                                 <th colspan="9">
-                                <div class="classic_answer" style="display: block;">
+                                <div class="classic_answer" data-questionid="<?php echo $CommentItem->getQuestionId();?>" style="display: block;">
                                 <ul class="answerList ui-sortable">
 
                                 <li style="border-bottom:1px dotted #ccc; padding-bottom: 5px; background-color: whiteSmoke;" id="TEST">
@@ -564,24 +570,29 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                                 <tbody>
                                 <tr>
                                     <td style="border-right: 1px solid #9E9E9E; padding: 5px; vertical-align: top;">
+                                    <div style="display: none;">
+                                            <label>
+                                                <input type="hidden" name="commentData[][commentid]" value="<?php echo $CommentItem->getCommentId();?>" class="wpProQuiz_classCorrect wpProQuiz_checkbox">
+                                                Правильно                                </label>
+                                        </div>
                                         <div style="display: none;">
                                             <label>
-                                                <input type="radio" name="commentrData[][correct]" value="1" class="wpProQuiz_classCorrect wpProQuiz_checkbox">
+                                                <input type="radio" name="commentData[][correct]" value="1" class="wpProQuiz_classCorrect wpProQuiz_checkbox">
                                                 Правильно                                </label>
                                         </div>
                                         <div style="padding-top: 5px;">
                                             <label>
-                                                <input type="checkbox" class="wpProQuiz_checkbox" name="commentrData[][html]" value="1">
+                                                <input type="checkbox" class="wpProQuiz_checkbox" name="commentData[<?php echo $CommentItem->getCommentId();?>][html]" value="1">
                                                 <?php echo $CommentItem->getQuestionId();  ?>                                </label>
                                         </div>
                                         <div style="padding-top: 5px;" class="wpProQuiz_answerPoints">
                                             <label>
-                                                <input type="number" min="0" class="small-text wpProQuiz_points" name="commentrData[][points]" value="1">
+                                                <input type="number" min="0" class="small-text wpProQuiz_points" name="commentData[<?php echo $CommentItem->getCommentId();?>][points]" value="<?php echo $CommentItem->getQuestionId();  ?>">
                                                 Баллы                                </label>
                                         </div>
                                     </td>
                                     <td style="padding: 5px; vertical-align: top;">
-                                                <textarea rows="2" cols="50" class="large-text wpProQuiz_text" name="commentData[][comment]" style="resize:vertical;"><?php
+                                                <textarea rows="2" cols="50" class="large-text wpProQuiz_text" name="commentData[<?php echo $CommentItem->getCommentId();?>][comment]" style="resize:vertical;"><?php
 	                            echo $CommentItem->getComment();
 	                          ?> </textarea>
                                     </td>

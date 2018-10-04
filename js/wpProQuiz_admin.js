@@ -2095,7 +2095,6 @@ jQuery(document).ready(function ($) {
 
                                     if (x > 0) {
                                         this.name = 'answerData[' + n + name.substring(x, name.length);
-
                                     }
                                 });
                             });
@@ -3021,6 +3020,7 @@ jQuery(document).ready(function ($) {
                     }
                 };
 
+
                 var deleteMethode = {
                     deleteUserStatistic: function (refId, userId) {
                         if (!confirm(wpProQuizLocalize.reset_statistics_msg))
@@ -3042,6 +3042,96 @@ jQuery(document).ready(function ($) {
                             overviewFilter.changeFilter();
                             methode.loadOverviewAjax();
 
+                        });
+                    },
+
+                    deleteAll: function () {
+                        if (!confirm(wpProQuizLocalize.reset_statistics_msg))
+                            return false;
+
+                        var data = {
+                            quizId: quizId,
+                            type: 1
+                        };
+
+                        global.ajaxPost('statisticResetNew', data, function () {
+                            historyFilter.changeFilter();
+                            methode.loadHistoryAjax();
+
+                            overviewFilter.changeFilter();
+                            methode.loadOverviewAjax();
+                        });
+                    }
+                };
+
+                var deleteMethode1 = {
+                    deleteUserStatistic: function (refId, userId) {
+                        if (!confirm(wpProQuizLocalize.reset_statistics_msg))
+                            return false;
+
+                        var data = {
+                            refId: refId,
+                            userId: userId,
+                            quizId: quizId,
+                            type: 3
+                        };
+
+                        global.ajaxPost('statisticResetNew', data, function () {
+                            $('#wpProQuiz_user_overlay').hide();
+
+                            historyFilter.changeFilter();
+                            methode.loadHistoryAjax();
+
+                            overviewFilter.changeFilter();
+                            methode.loadOverviewAjax();
+
+                        });
+                    },
+
+                    generateArrayIndex1: function (refId, userId) {
+                       // var type = $('input[name="answerType"]:checked').val();
+                       // type = (type == 'single' || type == 'multiple') ? 'classic_answer' : type;
+                        var commentItem= {};
+
+
+                        $('.answerList').each(function () {
+                            var currentType = $(this).parent().attr('class');
+                            var questionid =  $(this).parent().data('questionid');
+                            $(this).children().each(function (i, v) {
+                                $(this).find('[name^="commentData"]').each(function () {
+                                    var name = this.name;
+                                    var x = name.search(/\](\[\w+\])+$/);
+                                    var n=i;
+                                   // var n = (type == currentType) ? i : 'none';
+
+                                    if (x > 0) {
+                                        this.name = 'commentData[' + n + name.substring(x, name.length);
+                                        console.log( 'commentData[' + n +' '+ name.substring(x, name.length)+'value:'+this.value+'qid:'+questionid);
+                                       // commentItem[0][name.substring(x+2, name.length-1)]=this.value;
+                                       // console.log(name.substring(x+2, name.length-1));
+                                        commentItem[ + n + name.substring(x, name.length)+']']=this.value;
+                                    }
+                                });
+                            });
+
+                        });
+                        //var commentData=$('.answerList').serializeObject();
+                        //console.log(this.serialize());
+
+                        var data = {
+                            refId: 1,
+                            userId: 1,
+                            quizId: 1,
+                            commentData: commentItem,
+                            type: 3
+                        };
+
+                        global.ajaxPost('statisticResetNew', data, function () {
+                            historyFilter.changeFilter();
+                            methode.loadHistoryAjax();
+
+                            overviewFilter.changeFilter();
+                            methode.loadOverviewAjax();
                         });
                     },
 
@@ -3146,7 +3236,11 @@ jQuery(document).ready(function ($) {
 
                                 clone.appendTo(ul);
 
-                               // return false;
+                                return false;
+                            });
+
+                            content.find('#wpProQuiz_saveComment').click(function () {
+                                deleteMethode1.generateArrayIndex1(refId, userId);
                             });
 
                             content.find('#wpProQuiz_resetUserStatistic').click(function () {
