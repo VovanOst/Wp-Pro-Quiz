@@ -3093,10 +3093,11 @@ jQuery(document).ready(function ($) {
                        // type = (type == 'single' || type == 'multiple') ? 'classic_answer' : type;
                         var commentItem= {};
 
-
+                        var index=0;
                         $('.answerList').each(function () {
                             var currentType = $(this).parent().attr('class');
                             var questionid =  $(this).parent().data('questionid');
+
                             $(this).children().each(function (i, v) {
                                 $(this).find('[name^="commentData"]').each(function () {
                                     var name = this.name;
@@ -3105,13 +3106,15 @@ jQuery(document).ready(function ($) {
                                    // var n = (type == currentType) ? i : 'none';
 
                                     if (x > 0) {
-                                        this.name = 'commentData[' + n + name.substring(x, name.length);
-                                        console.log( 'commentData[' + n +' '+ name.substring(x, name.length)+'value:'+this.value+'qid:'+questionid);
+                                        this.name = 'commentData[' + index + name.substring(x, name.length);
+                                       // console.log( 'commentData[' +index+' '+ name.substring(x, name.length)+'value:'+this.value+'qid:'+questionid);
                                        // commentItem[0][name.substring(x+2, name.length-1)]=this.value;
                                        // console.log(name.substring(x+2, name.length-1));
-                                        commentItem[ + n + name.substring(x, name.length)+']']=this.value;
+                                        commentItem[+ index + name.substring(x, name.length)+']']=this.value;
+
                                     }
                                 });
+                                index++;
                             });
 
                         });

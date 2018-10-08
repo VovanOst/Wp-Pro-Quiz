@@ -415,6 +415,9 @@ class WpProQuiz_Controller_Statistics extends WpProQuiz_Controller_Controller
             case 1: //alles
                 $statisticRefMapper->deleteAll($data['quizId']);
                 break;
+	        case 3: //alles
+		        $statisticRefMapper->deleteAll($data['quizId']);
+		        break;
         }
     }
 
