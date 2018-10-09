@@ -2,8 +2,7 @@
 
 class WpProQuiz_Model_CommentMapper extends WpProQuiz_Model_Mapper
 {
-
-   /* public function deleteComment($commentIds, $quizId)
+	/* public function deleteComment($commentIds, $quizId)
     {
         return $this->_wpdb->query(
             $this->_wpdb->prepare('
