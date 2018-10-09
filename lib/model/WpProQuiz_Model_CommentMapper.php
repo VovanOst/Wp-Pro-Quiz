@@ -17,47 +17,47 @@ class WpProQuiz_Model_CommentMapper extends WpProQuiz_Model_Mapper
     /**
      * @param WpProQuiz_Model_Comment[] $comments
      */
-   /* public function update($comments)
+     public function update($comments)
     {
         $values = $values2 = array();
 
-        foreach ($comments as $comment) {*/
+        foreach ($comments as $comment) {
             /* @var $form WpProQuiz_Model_Form */
 
-          /*  $data = array(
-                $comment->getFormId(),
+            $data = array(
+                $comment->getCommentId(),
+	            $comment->getStatisticRefId(),
                 $comment->getQuizId(),
-                $comment->getFieldname(),
-                $comment->getType(),
-                (int)$comment->isRequired(),
-                $comment->getSort(),
-                (int)$comment->isShowInStatistic()
+                $comment->getQuestionId(),
+	            $comment->getUserId(),
+	            $comment->getComment(),
+                $comment->getCreateTime()
             );
-
-            if ($form->getData() === null) {
+	        $values[] = '(' . $this->_wpdb->prepare('%d, %d, %d, %d, %d, %s, %d', $data) . ')';
+            /*if ($form->getData() === null) {
                 $values[] = '(' . $this->_wpdb->prepare('%d, %d, %s, %d, %d, %d, %d', $data) . ')';
             } else {
                 $data[] = @json_encode($form->getData());
                 $values2[] = '(' . $this->_wpdb->prepare('%d, %d, %s, %d, %d, %d, %d, %s', $data) . ')';
-            }
+            }*/
         }
 
         if (!empty($values)) {
             $this->_wpdb->query('
-				REPLACE INTO ' . $this->_tableForm . '
-					(form_id, quiz_id, fieldname, type, required, sort, show_in_statistic)
+				REPLACE INTO ' . $this->_tableComment . '
+					(comment_id, statistic_ref_id, quiz_id, question_id, user_id, comment, create_time)
 				VALUES ' . implode(', ', $values) . '
 			');
         }
 
-        if (!empty($values2)) {
+       /* if (!empty($values2)) {
             $this->_wpdb->query('
 				REPLACE INTO ' . $this->_tableForm . '
 					(form_id, quiz_id, fieldname, type, required, sort, show_in_statistic, data)
 				VALUES ' . implode(', ', $values2) . '
 			');
-        }
-    }*/
+        }*/
+    }
 
     /**
      * @param $quizId

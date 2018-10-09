@@ -3122,9 +3122,9 @@ jQuery(document).ready(function ($) {
                         //console.log(this.serialize());
 
                         var data = {
-                            refId: 1,
-                            userId: 1,
-                            quizId: 1,
+                            refId: refId,
+                            userId: userId,
+                            quizId: quizId,
                             commentData: commentItem,
                             type: 3
                         };

@@ -18,6 +18,7 @@ class WpProQuiz_Model_Comment extends WpProQuiz_Model_Model
     protected $_statisticRefId=0;
 	protected $_comment='';
 	protected $_createTime = 0;
+	protected $_userId = 0;
 	protected $_userName = '';
    // protected $_fieldname = '';
    // protected $_type = 0;
@@ -100,12 +101,26 @@ class WpProQuiz_Model_Comment extends WpProQuiz_Model_Model
 		return $this->_createTime;
 	}
 
+	public function getUserId()
+	{
+		return $this->_userId;
+	}
+
+	public function setUserId($_userId)
+	{
+		$this->_userId = (int)$_userId;
+
+		return $this;
+	}
+
 	public function setUserName($_userName)
 	{
 		$this->_userName = (string)$_userName;
 
 		return $this;
 	}
+
+
 
 	public function getUserName()
 	{

@@ -401,6 +401,9 @@ class WpProQuiz_Controller_Statistics extends WpProQuiz_Controller_Controller
         }
 
         $statisticRefMapper = new WpProQuiz_Model_StatisticRefMapper();
+        $commentMapper=new WpProQuiz_Model_CommentMapper();
+
+	    //$commentMapper->update
 
         switch ($data['type']) {
             case 0: //RefId or UserId
@@ -416,7 +419,22 @@ class WpProQuiz_Controller_Statistics extends WpProQuiz_Controller_Controller
                 $statisticRefMapper->deleteAll($data['quizId']);
                 break;
 	        case 3: //alles
-		        $statisticRefMapper->deleteAll($data['quizId']);
+		        $r = array();
+		        foreach ($data['commentData'] as $commentitem)
+				{
+					$comment=new WpProQuiz_Model_Comment();
+					$comment->setQuizId($data['quizId']);
+					$comment->setCommentId($commentitem['commentid']);
+					if ($data['refId']) {
+						$comment->setStatisticRefId($data['refId']);
+					}
+					$comment->setQuestionId($commentitem['questionid']);
+					$comment->setUserId(get_current_user_id());
+					$comment->setCreateTime(time());
+					$comment->setComment($commentitem['comment']);
+					$r[]=$comment;
+				}
+		        $commentMapper->update($r);
 		        break;
         }
     }
