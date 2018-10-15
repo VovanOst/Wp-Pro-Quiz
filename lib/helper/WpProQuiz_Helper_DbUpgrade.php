@@ -1042,23 +1042,7 @@ class WpProQuiz_Helper_DbUpgrade
 			) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 		');
 		
-		CREATE TABLE `wp_wp_pro_quiz_comment` (
-	`comment_id` INT(11) NOT NULL AUTO_INCREMENT,
-	`statistic_ref_id` INT(11) NULL DEFAULT NULL,
-	`quiz_id` BIGINT(20) NULL DEFAULT NULL,
-	`question_id` BIGINT(20) NULL DEFAULT NULL,
-	`user_id` BIGINT(20) NULL DEFAULT NULL,
-	`comment` VARCHAR(200) NULL DEFAULT NULL,
-	`create_time` INT(11) NULL DEFAULT NULL,
-	PRIMARY KEY (`comment_id`)
-)
-COMMENT='таблица для комментарий'
-COLLATE='utf8_general_ci'
-ENGINE=InnoDB
-AUTO_INCREMENT=36
-;
-		
-		$this->_wpdb->query('
+    	$this->_wpdb->query('
 			CREATE TABLE `' . $this->_wpdb->prefix . 'wp_pro_quiz_template` (
 			  `template_id` int(11) NOT NULL AUTO_INCREMENT,
 			  `name` varchar(200) NOT NULL,
