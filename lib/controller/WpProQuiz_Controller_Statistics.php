@@ -436,15 +436,6 @@ class WpProQuiz_Controller_Statistics extends WpProQuiz_Controller_Controller
 				}
 		        $commentMapper->update($r);
 		        break;
-	        case 4: //RefId or UserId
-		        if ($data['refId']) {
-			        $statisticRefMapper->deleteByRefId($data['refId']);
-		        } else {
-			        if ($data['userId'] != '') {
-				        $statisticRefMapper->deleteByUserIdQuizId($data['userId'], $data['quizId']);
-			        }
-		        }
-		        break;
         }
     }
 

@@ -3236,7 +3236,7 @@ jQuery(document).ready(function ($) {
                                     li.remove();
                                     return false;
                                 });
-                                clone.find('.addMedia').click(methode.addMediaClick);
+                               // clone.find('.addMedia').click(methode.addMediaClick);
 
                                 clone.appendTo(ul);
 

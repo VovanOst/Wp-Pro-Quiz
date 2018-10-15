@@ -100,15 +100,15 @@ class WpProQuiz_Model_CommentMapper extends WpProQuiz_Model_Mapper
 
 	public function fetchByRefId($refIdUserId, $quizId, $avg = false)
 	{
-		$where = $avg ? 'comment.user_id = %d' : 'comment.statistic_ref_id = %d';
+		$where = $avg ? 'statisticRef.user_id = %d' : 'comment.statistic_ref_id = %d';
 		$results = $this->_wpdb->get_results(
 			$this->_wpdb->prepare(
 				"SELECT
 					comment.*
 				FROM 
-					{$this->_tableComment} AS comment 
+					{$this->_tableComment} AS comment, {$this->_tableStatisticRef} statisticRef
 				WHERE 
-					{$where} AND comment.quiz_id = %d"
+					{$where} AND comment.quiz_id = %d AND statisticRef.statistic_ref_id=comment.statistic_ref_id"
 				, $refIdUserId, $quizId)
 			, ARRAY_A);
 		$r = array();

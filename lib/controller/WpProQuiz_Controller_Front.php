@@ -15,6 +15,7 @@ class WpProQuiz_Controller_Front
         add_action('wp_enqueue_scripts', array($this, 'loadDefaultScripts'));
         add_shortcode('WpProQuiz', array($this, 'shortcode'));
         add_shortcode('WpProQuiz_toplist', array($this, 'shortcodeToplist'));
+	    add_shortcode('WpProQuiz_QuizComment', array($this, 'shortcodeQuizComment'));
     }
 
     public function loadDefaultScripts()
@@ -207,6 +208,83 @@ class WpProQuiz_Controller_Front
         $view->inQuiz = $inQuiz;
         $view->show();
     }
+
+	public function shortcodeQuizComment($attr)
+	{
+		$id = $attr[0];
+		$content = '';
+
+		if (!$this->_settings->isJsLoadInHead()) {
+			$this->loadJsScripts();
+		}
+
+		if (is_numeric($id)) {
+			ob_start();
+
+			$this->handleShortCodeQuizComment($id);
+
+			$content = ob_get_contents();
+
+			ob_end_clean();
+		}
+
+		if ($this->_settings->isAddRawShortcode()) {
+			return '[raw]' . $content . '[/raw]';
+		}
+
+		return $content;
+	}
+
+	public function handleShortCodeQuizComment($id)
+	{
+		$view = new WpProQuiz_View_FrontQuizComment();
+
+		$quizMapper = new WpProQuiz_Model_QuizMapper();
+		$questionMapper = new WpProQuiz_Model_QuestionMapper();
+		$categoryMapper = new WpProQuiz_Model_CategoryMapper();
+		$formMapper = new WpProQuiz_Model_FormMapper();
+		$commentMapper = new WpProQuiz_Model_CommentMapper();
+
+
+		$quiz = $quizMapper->fetch($id);
+
+		$maxQuestion = false;
+
+		if ($quiz->isShowMaxQuestion() && $quiz->getShowMaxQuestionValue() > 0) {
+
+			$value = $quiz->getShowMaxQuestionValue();
+
+			if ($quiz->isShowMaxQuestionPercent()) {
+				$count = $questionMapper->count($id);
+
+				$value = ceil($count * $value / 100);
+			}
+
+			$question = $questionMapper->fetchAll($id, true, $value);
+			$maxQuestion = true;
+
+		} else {
+			$question = $questionMapper->fetchAll($id);
+		}
+
+		if (empty($quiz) || empty($question)) {
+			echo '';
+
+			return;
+		}
+
+		$view->quiz = $quiz;
+		$view->question = $question;
+		$view->category = $categoryMapper->fetchByQuiz($quiz->getId());
+		$view->forms = $formMapper->fetch($quiz->getId());
+		$view->comment = $commentMapper->fetchByRefId(get_current_user_id(),$quiz->getId(),true));
+
+		/*if ($maxQuestion) {
+			$view->showMaxQuestion();
+		} else {*/
+			$view->show();
+		/*}*/
+	}
 
     private function loadSettings()
     {
