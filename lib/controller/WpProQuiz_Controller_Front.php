@@ -277,7 +277,7 @@ class WpProQuiz_Controller_Front
 		$view->question = $question;
 		$view->category = $categoryMapper->fetchByQuiz($quiz->getId());
 		$view->forms = $formMapper->fetch($quiz->getId());
-		$view->comment = $commentMapper->fetchByRefId(get_current_user_id(),$quiz->getId(),true));
+		$view->comment = $commentMapper->fetchByRefId(get_current_user_id(),$quiz->getId(),true);
 
 		/*if ($maxQuestion) {
 			$view->showMaxQuestion();
