@@ -282,7 +282,7 @@ class WpProQuiz_Controller_Front
 		/*if ($maxQuestion) {
 			$view->showMaxQuestion();
 		} else {*/
-			$view->show();
+			$view->show1();
 		/*}*/
 	}
 
