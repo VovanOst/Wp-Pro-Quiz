@@ -257,7 +257,7 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                     </tr>
                     <?php if (!$this->avg && $q['statistcAnswerData'] !== null) { ?>
 
-                        <tr style="display: none;">
+                        <tr style="display: table-row;">
                             <th colspan="9">
                                 <?php $this->showUserAnswer($q['questionAnswerData'], $q['statistcAnswerData'],
                                     $q['answerType']); ?>
