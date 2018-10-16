@@ -868,7 +868,7 @@ class WpProQuiz_View_FrontQuiz extends WpProQuiz_View_View
                         <?php } ?>
                         <div class="wpProQuiz_question" style="margin: 10px 0 0 0;">
                             <div class="wpProQuiz_question_text">
-                                <?php echo do_shortcode(apply_filters('comment_text', $question->getQuestion())); ?>
+                                <strong> <?php echo do_shortcode(apply_filters('comment_text', $question->getQuestion())); ?> </strong>
                             </div>
                             <?php if ($question->getAnswerType() === 'matrix_sort_answer') { ?>
                                 <div class="wpProQuiz_matrixSortString">
