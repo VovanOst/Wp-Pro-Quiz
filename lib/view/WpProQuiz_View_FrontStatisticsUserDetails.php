@@ -185,10 +185,10 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
 												$newcomment=false;
 											}
 										}
-										/*if($newcomment)
+										if($newcomment)
 										{
 											$this->showUserComment($item,$newcomment,$q['question_id']);
-										}*/
+										}
 										?>
 
                                 </div>
@@ -482,8 +482,6 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
 	private function showUserComment($CommentItem,$newcomment,$newquestionid)
 	{
 		?>
-
-        <li style="border-bottom:1px dotted #ccc; padding-bottom: 5px; background-color: whiteSmoke;" id="TEST">
             <table style="width: 100%;border: 1px solid #9E9E9E;border-collapse: collapse; margin-bottom: 20px;">
                 <thead>
                 <tr>
@@ -492,12 +490,29 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr><?php
+                          if ($newcomment)
+                          { ?>
+	                          <td colspan="2"   style="border-right: 1px solid #9E9E9E; padding: 5px; vertical-align: top; text-align: center;">
+                        <div style="display: none;">
+                            <label>
+                                <input type="hidden" name="commentData[][questionid]" value="<?php echo $newcomment?$newquestionid:$CommentItem->getQuestionId();?>" class="wpProQuiz_classCorrect wpProQuiz_checkbox">
+                                                              </label>
+                        </div>
+
+                        <div style="padding-top: 5px;" class="wpProQuiz_answerPoints">
+                            <label>
+	                            <?php echo 'Нет комментарий' ?> </label>
+                              </div>
+                              </td>
+                              <?php
+                          }else {
+                    ?>
                     <td style="border-right: 1px solid #9E9E9E; padding: 5px; vertical-align: top;">
                         <div style="display: none;">
                             <label>
                                 <input type="hidden" name="commentData[][questionid]" value="<?php echo $newcomment?$newquestionid:$CommentItem->getQuestionId();?>" class="wpProQuiz_classCorrect wpProQuiz_checkbox">
-                                Правильно                                </label>
+                                                              </label>
                         </div>
 
                         <div style="padding-top: 5px;" class="wpProQuiz_answerPoints">
@@ -510,15 +525,10 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
 	                                                echo $newcomment?'':$CommentItem->getComment();
 	                                                ?> </textarea>
                     </td>
+                              <?php } ?>
                 </tr>
                 </tbody>
             </table>
-
-            <input type="button" name="submit" class="button-primary wpProQuiz_deleteAnswer" value="Удалить ответ">
-            <!--input type="button" class="button-secondary addMedia" value="Добавить медиафайл"-->
-            <!--a href="#" class="button-secondary wpProQuiz_move ui-sortable-handle" style="cursor: move;">Переместить</a-->
-
-        </li>
 		<?php
 	}
 
