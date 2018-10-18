@@ -132,7 +132,7 @@ class WpProQuiz_View_StatisticsNew extends WpProQuiz_View_View
                                                     continue;
                                                 }
 
-                                                echo '<option value="', $user->ID, '">', $user->user_login, ' (', $user->display_name, ')</option>';
+                                                echo '<option value="', $user->ID, '">', $user->display_name, ' (', $user->user_login, ')</option>';
                                             } ?>
                                         </optgroup>
                                     </select>

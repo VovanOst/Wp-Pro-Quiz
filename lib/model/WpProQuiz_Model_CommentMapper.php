@@ -113,6 +113,7 @@ class WpProQuiz_Model_CommentMapper extends WpProQuiz_Model_Mapper
 			, ARRAY_A);
 		$r = array();
 		foreach ($results as $row) {
+
 			$r[] = new WpProQuiz_Model_Comment($row);
 		}
 

@@ -53,6 +53,31 @@ class WpProQuiz_Model_StatisticRefMapper extends WpProQuiz_Model_Mapper
         return null;
     }
 
+	public function fetchByOnlyRefId($refIdUserId)
+	{
+		$where ='sf.statistic_ref_id = %d'; //$avg ? 'sf.user_id = %d' : 'sf.statistic_ref_id = %d';
+		$results = $this->_wpdb->get_results(
+			$this->_wpdb->prepare(
+				"SELECT
+					sf.*,
+					MIN(sf.create_time) AS min_create_time,
+					MAX(sf.create_time) AS max_create_time
+				FROM 
+					{$this->_tableStatisticRef} AS sf 
+				WHERE 
+					{$where} "
+				, $refIdUserId)
+			, ARRAY_A);
+
+		foreach ($results as $row) {
+			$row['form_data'] = $row['form_data'] === null ? null : @json_decode($row['form_data'], true);
+
+			return new WpProQuiz_Model_StatisticRefModel($row);
+		}
+
+		return null;
+	}
+
     public function fetchAvg($quizId, $userId)
     {
         $r = array();

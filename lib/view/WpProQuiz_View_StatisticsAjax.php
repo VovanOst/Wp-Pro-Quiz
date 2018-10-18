@@ -182,7 +182,6 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
         <h2>
             <?php echo date_i18n(get_option('wpProQuiz_statisticTimeFormat', 'Y/m/d g:i A'),
                 $this->statisticModel->getMinCreateTime()); ?>
-            -
             <?php echo date_i18n(get_option('wpProQuiz_statisticTimeFormat', 'Y/m/d g:i A'),
                 $this->statisticModel->getMaxCreateTime()); ?>
         </h2>
@@ -192,7 +191,6 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
     <?php } ?>
 
         <?php $this->formTable(); ?>
-
         <table class="wp-list-table widefat" style="margin-top: 20px;">
             <thead>
             <tr>
@@ -263,7 +261,7 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                                     $q['answerType']); ?>
                             </th>
                         </tr>
-                        ?> <tr style="display: table-row">
+                         <tr style="display: table-row">
                                 <th colspan="9">
                                 <div class="classic_answer" data-questionid="<?php $q['question_id'];?>" style="display: block;">
                                 <ul class="answerList ui-sortable">
@@ -408,7 +406,7 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                     }
                     ?>
                     <li class="<?php echo $correct; ?>">
-                        <label>
+                        <label><?php echo $i+1; ?>.
                             <input disabled="disabled"
                                    type="<?php echo $anserType === 'single' ? 'radio' : 'checkbox'; ?>"
                                 <?php echo $sAnswerData[$i] ? 'checked="checked"' : '' ?>>

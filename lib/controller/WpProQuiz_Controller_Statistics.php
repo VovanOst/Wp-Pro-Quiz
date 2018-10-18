@@ -46,7 +46,7 @@ class WpProQuiz_Controller_Statistics extends WpProQuiz_Controller_Controller
             add_action('pre_user_query', 'ure_exclude_administrators');
 
         } else {
-            $users = get_users(array('fields' => array('ID', 'user_login', 'display_name')));
+            $users = get_users(array('orderby'=>'display_name','fields' => array('ID', 'user_login', 'display_name')));
         }
 
         $view->quiz = $quiz;
@@ -329,6 +329,7 @@ class WpProQuiz_Controller_Statistics extends WpProQuiz_Controller_Controller
         $statisticUserMapper = new WpProQuiz_Model_StatisticUserMapper();
         $formMapper = new WpProQuiz_Model_FormMapper();
 	    $commentMapper = new WpProQuiz_Model_CommentMapper();
+	    $comment = new WpProQuiz_Model_Comment();
 
         $statisticUsers = $statisticUserMapper->fetchUserStatistic($refIdUserId, $quizId, $avg);
 
