@@ -47,15 +47,8 @@ class WpProQuiz_View_FrontStatisticsUser extends WpProQuiz_View_View {
 					/* @var $model WpProQuiz_Model_StatisticHistory */ ?>
 					<tr>
 						<th>
-							<a href="http://7basis.loc/test-details/?userRefid=<?php echo $model->getStatisticRefId(); ?>" class="user_statistic"
+							<a href="http://7basis.loc/test-details/?userRefid=<?php echo $model->getStatisticRefId(); ?>&quizId=<?php echo $model->getQuizId(); ?>" class="user_statistic"
 							   data-ref_id="<?php echo $model->getStatisticRefId(); ?>"><?php echo $model->getUserName(); ?></a>
-
-							<div class="row-actions">
-							<span>
-								<a style="color: red;" class="wpProQuiz_delete" href="#"><?php _e('Delete',
-										'wp-pro-quiz'); ?></a>
-							</span>
-							</div>
 
 						</th>
 						<?php foreach ($model->getFormOverview() as $form) {

@@ -305,7 +305,7 @@ class WpProQuiz_Controller_Front
 
 	public function handleShortCodeStatisticsUserDetails()
 	{
-		if(isset($_GET['userRefid'])) {
+		if(isset($_GET['userRefid'])&&isset($_GET['quizId'])) {
 			$quizId = 1;//$data['quizId'];
 			//$userId = $data['userId'];
 			//$refId = $data['refId'];
