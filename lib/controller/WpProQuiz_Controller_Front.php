@@ -238,17 +238,11 @@ class WpProQuiz_Controller_Front
 
 	public function handleShortCodeStatisticsUser()
 	{
-
-
-		$quizMapper = new WpProQuiz_Model_QuizMapper();
-		$questionMapper = new WpProQuiz_Model_QuestionMapper();
-		$categoryMapper = new WpProQuiz_Model_CategoryMapper();
-		$formMapper = new WpProQuiz_Model_FormMapper();
 		$commentMapper = new WpProQuiz_Model_CommentMapper();
 		$statisticRefMapper = new WpProQuiz_Model_StatisticRefMapper();
 
 		//$quiz = $quizMapper->fetch($id);
-		$statisticModel = $statisticRefMapper->fetchHistory(1, 0, 100,get_current_user_id(), null,
+		$statisticModel = $statisticRefMapper->fetchHistoryByUser( 0, 100,get_current_user_id(), null,
 			null);
 		foreach ($statisticModel as $model) {
 			/* @var $model WpProQuiz_Model_StatisticHistory */
@@ -276,14 +270,7 @@ class WpProQuiz_Controller_Front
 			$formData = $model->getFormData();
 			$formOverview = array();
 
-			foreach ($forms as $form) {
-				/* @var $form WpProQuiz_Model_Form */
-				if ($form->isShowInStatistic()) {
-					$formOverview[] = $formData != null && isset($formData[$form->getFormId()])
-						? WpProQuiz_Helper_Form::formToString($form, $formData[$form->getFormId()])
-						: '----';
-				}
-			}
+
 			$model->setFormOverview($formOverview);
 		};
 
@@ -306,7 +293,7 @@ class WpProQuiz_Controller_Front
 	public function handleShortCodeStatisticsUserDetails()
 	{
 		if(isset($_GET['userRefid'])&&isset($_GET['quizId'])) {
-			$quizId = 1;//$data['quizId'];
+			$quizId = $_GET['quizId'];//$data['quizId'];
 			//$userId = $data['userId'];
 			//$refId = $data['refId'];
 			$avg = false;

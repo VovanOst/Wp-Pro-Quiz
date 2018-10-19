@@ -19,6 +19,8 @@ class WpProQuiz_Model_StatisticHistory extends WpProQuiz_Model_Model
     protected $_formData = null;
     protected $_formOverview = array();
     protected $_solvedCount = 0;
+	protected $_accessFront = false;
+	protected $_passTest = false;
 
     public function setUserId($_userId)
     {
@@ -211,4 +213,28 @@ class WpProQuiz_Model_StatisticHistory extends WpProQuiz_Model_Model
     {
         return $this->_solvedCount;
     }
+
+	public function setAccessFront($_accessFront)
+	{
+		$this->_accessFront = (bool)$_accessFront;
+
+		return $this;
+	}
+
+	public function isAccessFront()
+	{
+		return $this->_accessFront;
+	}
+
+	public function setPassTest($_passTest)
+	{
+		$this->_passTest = (bool)$_passTest;
+
+		return $this;
+	}
+
+	public function isPassTest()
+	{
+		return $this->_passTest;
+	}
 }

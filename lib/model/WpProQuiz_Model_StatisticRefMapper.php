@@ -431,6 +431,75 @@ class WpProQuiz_Model_StatisticRefMapper extends WpProQuiz_Model_Mapper
         return $r;
     }
 
+	public function fetchHistoryByUser( $page, $limit, $users = -1, $startTime = 0, $endTime = 0)
+	{
+		$timeWhere = '';
+
+		switch ($users) {
+			case -3: //only anonym
+				$where = 'AND user_id = 0';
+				break;
+			case -2: //only reg user
+				$where = 'AND user_id > 0';
+				break;
+			case -1: //all
+				$where = '';
+				break;
+			default:
+				$where = 'AND user_id = ' . (int)$users;
+				break;
+		}
+
+		if ($startTime) {
+			$timeWhere = 'AND create_time >= ' . (int)$startTime;
+		}
+
+		if ($endTime) {
+			$timeWhere .= ' AND create_time <= ' . (int)$endTime;
+		}
+
+		$result = $this->_wpdb->get_results(
+			$this->_wpdb->prepare('
+				SELECT
+					u.`user_login`, u.`display_name`, u.ID AS user_id,
+					sf.*,
+					SUM(s.correct_count) AS correct_count,
+					SUM(s.incorrect_count) AS incorrect_count,
+					SUM(s.solved_count) as solved_count,
+					SUM(s.points) AS points, 
+					SUM(q.points) AS g_points 
+				FROM
+					' . $this->_tableStatisticRef . ' AS sf
+					INNER JOIN ' . $this->_tableStatistic . ' AS s ON(s.statistic_ref_id = sf.statistic_ref_id)
+					LEFT JOIN ' . $this->_wpdb->users . ' AS u ON(u.ID = sf.user_id)
+					INNER JOIN ' . $this->_tableQuestion . ' AS q ON(q.id = s.question_id)
+				WHERE
+					 sf.is_old = 0 ' . $where . ' ' . $timeWhere . '
+				GROUP BY
+					sf.statistic_ref_id
+				ORDER BY
+					sf.create_time DESC
+				LIMIT
+					%d, %d
+			',  $page, $limit),
+			ARRAY_A
+		);
+
+		$r = array();
+
+		foreach ($result as $row) {
+			if (!empty($row['user_login'])) {
+				$row['user_name'] = $row['user_login'] . ' (' . $row['display_name'] . ')';
+			}
+
+			$row['form_data'] = $row['form_data'] === null ? null : @json_decode($row['form_data'], true);
+
+			$r[] = new WpProQuiz_Model_StatisticHistory($row);
+		}
+
+		return $r;
+	}
+
     public function countFormOverview($quizId, $onlyUser)
     {
 

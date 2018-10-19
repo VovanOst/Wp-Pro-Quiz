@@ -11,6 +11,8 @@ class WpProQuiz_Model_StatisticRefModel extends WpProQuiz_Model_Model
     protected $_formData = null;
     protected $_minCreateTime = 0;
     protected $_maxCreateTime = 0;
+	protected $_accessFront = false;
+    protected $_passTest = false;
 
     public function setStatisticRefId($_statisticRefId)
     {
@@ -107,4 +109,28 @@ class WpProQuiz_Model_StatisticRefModel extends WpProQuiz_Model_Model
     {
         return $this->_maxCreateTime;
     }
+
+	public function setAccessFront($_accessFront)
+	{
+		$this->_accessFront = (bool)$_accessFront;
+
+		return $this;
+	}
+
+	public function isAccessFront()
+	{
+		return $this->_accessFront;
+	}
+
+	public function setPassTest($_passTest)
+	{
+		$this->_passTest = (bool)$_passTest;
+
+		return $this;
+	}
+
+	public function isPassTest()
+	{
+		return $this->_passTest;
+	}
 }

@@ -47,6 +47,8 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                 <th scope="col" style="width: 100px;"><?php _e('Solved', 'wp-pro-quiz'); ?></th>
                 <th scope="col" style="width: 100px;"><?php _e('Points', 'wp-pro-quiz'); ?></th>
                 <th scope="col" style="width: 60px;"><?php _e('Results', 'wp-pro-quiz'); ?></th>
+                <th scope="col" style="width: 60px;"><?php _e('Отправлено', 'wp-pro-quiz'); ?></th>
+                <th scope="col" style="width: 60px;"><?php _e('Зачет', 'wp-pro-quiz'); ?></th>
             </tr>
             </thead>
             <tbody id="wpProQuiz_statistics_form_data">
@@ -83,6 +85,19 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                                 $model->getCorrectCount() + $model->getIncorrectCount()); ?></th>
                         <th><?php echo $model->getPoints(); ?></th>
                         <th style="font-weight: bold;"><?php echo $model->getResult(); ?>%</th>
+                        <th style="font-weight: bold;"><div style="padding-top: 5px;">
+                                <label>
+                                    <input type="checkbox"  class="wpProQuiz_checkbox" name="accessfront" onclick="return false;" <?php echo $model->isAccessFront()?'checked':''; ?>>
+                                </label>
+                            </div></th>
+                        <th style="font-weight: bold;">
+                            <div style="padding-top: 5px;">
+                                <label>
+                                    <input type="checkbox"  class="wpProQuiz_checkbox" name="passtest" onclick="return false;" <?php echo $model->isPassTest()?'checked':''; ?>>
+                                                              </label>
+                            </div>
+
+                        </th>
                     </tr>
                 <?php }
             } ?>
@@ -779,6 +794,8 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                 <th scope="col" style="width: 100px;"><?php _e('Time', 'wp-pro-quiz'); ?> <span
                         style="font-size: x-small;">(hh:mm:ss)</span></th>
                 <th scope="col" style="width: 60px;"><?php _e('Results', 'wp-pro-quiz'); ?></th>
+                <th scope="col" style="width: 60px;"><?php _e('Доступно студентам', 'wp-pro-quiz'); ?></th>
+                <th scope="col" style="width: 60px;"><?php _e('Зачет', 'wp-pro-quiz'); ?></th>
             </tr>
             </thead>
             <tbody>

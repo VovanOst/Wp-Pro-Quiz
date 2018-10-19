@@ -23,7 +23,9 @@ class WpProQuiz_Model_StatisticUserMapper extends WpProQuiz_Model_Mapper
 					q.answer_type,
 					SUM(q.points * (s.correct_count + s.incorrect_count)) AS g_points,
 					c.category_id,
-					c.category_name
+					c.category_name,
+					sf.access_front,
+					sf.pass_test
 				FROM
 					{$this->_tableStatisticRef} AS sf
 			        INNER JOIN {$this->_tableStatistic} AS s ON(s.statistic_ref_id = sf.statistic_ref_id)

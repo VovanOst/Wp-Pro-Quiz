@@ -12,6 +12,8 @@ class WpProQuiz_Model_Statistic extends WpProQuiz_Model_Model
     protected $_questionTime = 0;
     protected $_answerData = null;
     protected $_solvedCount = 0;
+	protected $_accessFront = false;
+	protected $_passTest = false;
 
     public function setStatisticRefId($_statisticRefId)
     {
@@ -116,8 +118,29 @@ class WpProQuiz_Model_Statistic extends WpProQuiz_Model_Model
         return $this;
     }
 
-    public function getSolvedCount()
+	public function setAccessFront($_accessFront)
+	{
+		$this->_accessFront = (bool)$_accessFront;
+
+		return $this;
+	}
+
+    public function isAccessFront()
     {
-        return $this->_solvedCount;
+        return $this->_accessFront;
     }
+
+	public function setPassTest($_passTest)
+	{
+		$this->_passTest = (bool)$_passTest;
+
+		return $this;
+	}
+
+	public function isPassTest()
+	{
+		return $this->_passTest;
+	}
+
+
 }

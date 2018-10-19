@@ -17,6 +17,8 @@ class WpProQuiz_Model_StatisticUser extends WpProQuiz_Model_Model
     protected $_questionAnswerData = null;
     protected $_answerType = '';
     protected $_solvedCount = 0;
+	protected $_accessFront = false;
+	protected $_passTest = false;
 
     public function setCorrectCount($_correctCount)
     {
@@ -189,4 +191,16 @@ class WpProQuiz_Model_StatisticUser extends WpProQuiz_Model_Model
     {
         return $this->_solvedCount;
     }
+
+	public function setPassTest($_passTest)
+	{
+		$this->_passTest = (bool)$_passTest;
+
+		return $this;
+	}
+
+	public function isPassTest()
+	{
+		return $this->_passTest;
+	}
 }
