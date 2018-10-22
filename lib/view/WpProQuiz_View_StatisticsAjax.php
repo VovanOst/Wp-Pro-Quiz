@@ -363,6 +363,13 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
             </tfoot>
         </table>
 
+         <div style="margin-top: 10px;">
+             <div style="padding-top: 5px;">
+                 <label>
+                     <input type="checkbox" class="wpProQuiz_vis" name="visible_test" >
+                     Видимость для студента                           </label>
+             </div>
+         </div>
         <div style="margin-top: 10px;">
             <div style="float: left;">
                 <a class="button-secondary wpProQuiz_update" href="#"><?php _e('Refresh', 'wp-pro-quiz'); ?></a>
@@ -373,6 +380,7 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                             'wp-pro-quiz'); ?></a>
                 <?php } ?>
             </div>
+
             <div style="float: right;">
                 <?php if (current_user_can('wpProQuiz_reset_statistics')) { ?>
                     <a class="button-secondary" href="#" id="wpProQuiz_resetUserStatistic"><?php _e('Reset statistics',
