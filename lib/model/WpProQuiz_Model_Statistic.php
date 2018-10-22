@@ -118,6 +118,11 @@ class WpProQuiz_Model_Statistic extends WpProQuiz_Model_Model
         return $this;
     }
 
+	public function getSolvedCount()
+	{
+		return $this->_solvedCount;
+	}
+
 	public function setAccessFront($_accessFront)
 	{
 		$this->_accessFront = (bool)$_accessFront;
