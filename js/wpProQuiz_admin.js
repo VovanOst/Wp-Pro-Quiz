@@ -3089,8 +3089,8 @@ jQuery(document).ready(function ($) {
                     },
 
                     generateArrayIndexComment: function (refId, userId) {
-                        var accessFront = $('input[name="accessFront"]:checked').val();
-                        var passTest = $('input[name="passTest"]:checked').val();
+                       // var accessFront = $('input[name="accessFront"]:checked').val();
+                        //var passTest = $('input[name="passTest"]:checked').val();
                        // type = (type == 'single' || type == 'multiple') ? 'classic_answer' : type;
                         var commentItem= {};
 
@@ -3127,13 +3127,15 @@ jQuery(document).ready(function ($) {
                             userId: userId,
                             quizId: quizId,
                             commentData: commentItem,
-                            type: 3,
-                            accessFront: accessFront,
-                            passTest: passTest
+                            type: 3
                         };
+
+                        //  accessFront: accessFront,
+                       // passTest: passTest
 
                         global.ajaxPost('statisticResetNew', data, function () {
                             historyFilter.changeFilter();
+                            methode.loadUserAjax(userId, refId, false);
                             methode.loadHistoryAjax();
 
                             overviewFilter.changeFilter();
