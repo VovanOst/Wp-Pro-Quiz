@@ -23,7 +23,7 @@ class WpProQuiz_View_FrontStatisticsUser extends WpProQuiz_View_View {
 		<table class="wp-list-table widefat">
 			<thead>
 			<tr>
-				<th scope="col"><?php _e('Username', 'wp-pro-quiz'); ?></th>
+				<th scope="col"><?php _e('Студент', 'wp-pro-quiz'); ?></th>
 
 
 
@@ -32,7 +32,7 @@ class WpProQuiz_View_FrontStatisticsUser extends WpProQuiz_View_View {
 				<th scope="col" style="width: 100px;"><?php _e('Incorrect', 'wp-pro-quiz'); ?></th>
 				<th scope="col" style="width: 100px;"><?php _e('Solved', 'wp-pro-quiz'); ?></th>
 				<th scope="col" style="width: 100px;"><?php _e('Points', 'wp-pro-quiz'); ?></th>
-				<th scope="col" style="width: 60px;"><?php _e('Results', 'wp-pro-quiz'); ?></th>
+				<th scope="col" style="width: 60px;"><?php _e('Результат', 'wp-pro-quiz'); ?></th>
 			</tr>
 			</thead>
 			<tbody id="wpProQuiz_statistics_form_data">

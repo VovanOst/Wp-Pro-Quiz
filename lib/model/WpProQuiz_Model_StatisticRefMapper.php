@@ -694,4 +694,46 @@ class WpProQuiz_Model_StatisticRefMapper extends WpProQuiz_Model_Mapper
 				sf.quiz_id = %d",
             $quizId), ARRAY_A);
     }
+
+
+	public function changeChecked($data)
+	{
+		//$values = array();
+
+		//$refId = null;
+		$isOld = false;
+
+// 		if(!$statisticRefModel->getUserId()) {
+// 			$isOld = true;
+
+// 			$refId = $this->_wpdb->get_var(
+// 					$this->_wpdb->prepare('
+// 						SELECT statistic_ref_id
+// 						FROM '.$this->_tableStatisticRef.'
+// 						WHERE quiz_id = %d AND user_id = %d
+// 				', $statisticRefModel->getQuizId(), $statisticRefModel->getUserId())
+// 			);
+// 		}
+
+
+		$refData = array(
+			'access_front' => (int) $data['accessFront'],
+			'pass_test'    => (int) $data['passTest']
+		);
+
+		$refWhere = array(
+			'statistic_ref_id' => $data['$refId']
+		);
+
+
+		$dataFormat  = array( '%d', '%d' );
+		$whereFormat = array( '%d' );
+
+
+		$this->_wpdb->update( $this->_tableStatisticRef, $refData, $refWhere, $dataFormat, $whereFormat );
+	}
+
+
+
+
 }

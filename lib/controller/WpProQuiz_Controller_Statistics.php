@@ -397,7 +397,7 @@ class WpProQuiz_Controller_Statistics extends WpProQuiz_Controller_Controller
 
     public static function ajaxRestStatistic($data)
     {
-        if (!current_user_can('wpProQuiz_reset_statistics')) {
+       if (!current_user_can('wpProQuiz_reset_statistics')) {
             return;
         }
 
@@ -436,6 +436,7 @@ class WpProQuiz_Controller_Statistics extends WpProQuiz_Controller_Controller
 					$r[]=$comment;
 				}
 		        $commentMapper->update($r);
+		        $statisticRefMapper->changeChecked($data);
 		        break;
         }
     }

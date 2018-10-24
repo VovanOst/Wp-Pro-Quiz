@@ -3089,7 +3089,8 @@ jQuery(document).ready(function ($) {
                     },
 
                     generateArrayIndexComment: function (refId, userId) {
-                       // var type = $('input[name="answerType"]:checked').val();
+                        var accessFront = $('input[name="accessFront"]:checked').val();
+                        var passTest = $('input[name="passTest"]:checked').val();
                        // type = (type == 'single' || type == 'multiple') ? 'classic_answer' : type;
                         var commentItem= {};
 
@@ -3119,14 +3120,16 @@ jQuery(document).ready(function ($) {
 
                         });
                         //var commentData=$('.answerList').serializeObject();
-                        //console.log(this.serialize());
+                       // console.log('accessFront:'+accessFront+'passTest:'+passTest);
 
                         var data = {
                             refId: refId,
                             userId: userId,
                             quizId: quizId,
                             commentData: commentItem,
-                            type: 3
+                            type: 3,
+                            accessFront: accessFront,
+                            passTest: passTest
                         };
 
                         global.ajaxPost('statisticResetNew', data, function () {

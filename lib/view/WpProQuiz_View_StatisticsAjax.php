@@ -286,7 +286,7 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                             {
                                 if($item->getQuestionId()==$q['question_id'])
                                 {
-                                                                    $this->showUserComment($item);
+                                                                    $this->showUserComment($item,null,null);
                                                                     $newcomment=false;
                                      }
                             }
@@ -366,8 +366,13 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
          <div style="margin-top: 10px;">
              <div style="padding-top: 5px;">
                  <label>
-                     <input type="checkbox" class="wpProQuiz_vis" name="visible_test" >
+                     <input type="checkbox" class="wpProQuiz_accessFront" name="accessFront" >
                      Видимость для студента                           </label>
+             </div>
+             <div style="padding-top: 5px;">
+                 <label>
+                     <input type="checkbox" class="wpProQuiz_passTest" name="passTest" >
+                     Зачет                          </label>
              </div>
          </div>
         <div style="margin-top: 10px;">
