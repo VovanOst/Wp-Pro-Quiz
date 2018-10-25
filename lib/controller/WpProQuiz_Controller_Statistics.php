@@ -435,8 +435,9 @@ class WpProQuiz_Controller_Statistics extends WpProQuiz_Controller_Controller
 					$comment->setComment($commentitem['comment']);
 					$r[]=$comment;
 				}
-		        $commentMapper->update($r);
 		        $statisticRefMapper->changeChecked($data);
+		        $commentMapper->update($r);
+
 		        break;
         }
     }

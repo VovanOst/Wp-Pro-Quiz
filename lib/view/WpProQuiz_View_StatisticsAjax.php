@@ -286,13 +286,13 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                             {
                                 if($item->getQuestionId()==$q['question_id'])
                                 {
-                                                                    $this->showUserComment($item,null,null);
+                                                                    $this->showUserComment($item,false,null);
                                                                     $newcomment=false;
                                      }
                             }
                             if($newcomment)
                                 {
-                                   $this->showUserComment($item,$newcomment,$q['question_id']);
+                                   $this->showUserComment(null,$newcomment,$q['question_id']);
                                 }
                             ?>
                             </ul>
@@ -363,18 +363,6 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
             </tfoot>
         </table>
 
-         <div style="margin-top: 10px;">
-             <div style="padding-top: 5px;">
-                 <label>
-                     <input type="checkbox" class="wpProQuiz_accessFront" name="accessFront" >
-                     Видимость для студента                           </label>
-             </div>
-             <div style="padding-top: 5px;">
-                 <label>
-                     <input type="checkbox" class="wpProQuiz_passTest" name="passTest" >
-                     Зачет                          </label>
-             </div>
-         </div>
         <div style="margin-top: 10px;">
             <div style="float: left;">
                 <a class="button-secondary wpProQuiz_update" href="#"><?php _e('Refresh', 'wp-pro-quiz'); ?></a>
@@ -385,7 +373,6 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                             'wp-pro-quiz'); ?></a>
                 <?php } ?>
             </div>
-
             <div style="float: right;">
                 <?php if (current_user_can('wpProQuiz_reset_statistics')) { ?>
                     <a class="button-secondary" href="#" id="wpProQuiz_resetUserStatistic"><?php _e('Reset statistics',

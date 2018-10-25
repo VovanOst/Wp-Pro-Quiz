@@ -2,7 +2,6 @@
 
 class WpProQuiz_Model_StatisticRefMapper extends WpProQuiz_Model_Mapper
 {
-
     public function fetchAll($quizId, $userId, $testId = 0)
     {
         $r = array();
@@ -722,7 +721,7 @@ class WpProQuiz_Model_StatisticRefMapper extends WpProQuiz_Model_Mapper
 		);
 
 		$refWhere = array(
-			'statistic_ref_id' => $data['$refId']
+			'statistic_ref_id' => $data['refId']
 		);
 
 
