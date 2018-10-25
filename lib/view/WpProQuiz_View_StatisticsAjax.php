@@ -366,12 +366,12 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                  <div style="margin-top: 10px;">
                      <div style="padding-top: 5px;">
                              <label>
-                                     <input type="checkbox" class="wpProQuiz_accessFront" name="accessFront" >
+                                     <input type="checkbox" class="wpProQuiz_accessFront" name="accessFront" <?php echo $this->statisticModel->isAccessFront() ? 'checked="checked"' : '' ?> >
                                      Видимость студенту </label>
                         </div>
                     <div style="padding-top: 5px;">
                              <label>
-                                     <input type="checkbox" class="wpProQuiz_passTest" name="passTest" >
+                                     <input type="checkbox" class="wpProQuiz_passTest" name="passTest" <?php echo $this->statisticModel->isPassTest() ? 'checked="checked"' : '' ?>  >
                                      Зачет                          </label>
                          </div>
                  </div>
