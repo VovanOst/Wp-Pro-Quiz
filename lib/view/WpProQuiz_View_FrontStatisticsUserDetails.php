@@ -39,12 +39,12 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
             }
 
             .wpProQuiz_answerCorrect {
-                background: #6DB46D !important;
+                background: <?php echo $this->statisticModel->isPassTest()?'#6DB46D':'FFFFFF'?> !important;
                 font-weight: bold !important;
             }
 
             .wpProQuiz_answerIncorrect {
-                background: #FF9191 !important;
+                background: <?php echo $this->statisticModel->isPassTest()?'#FF9191':'#FFFFFF'?> !important;
                 font-weight: bold !important;
             }
 
@@ -103,6 +103,9 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
 	<?php } ?>
 
 		<?php $this->formTable(); ?>
+		<?php if($this->statisticModel->isAccessFront())
+            {
+		    ?>
         <table class="wp-list-table widefat" style="margin-top: 20px;">
             <thead>
             <tr>
@@ -187,7 +190,7 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
 										}
 										if($newcomment)
 										{
-											$this->showUserComment($item,$newcomment,$q['question_id']);
+											$this->showUserComment(null,$newcomment,$q['question_id']);
 										}
 										?>
 
@@ -257,7 +260,13 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
             </tfoot>
         </table>
 
-		<?php
+		<?php } else
+              { ?>
+	              <h3>
+	                            <?php echo 'Ждет проверки....' ?> </label>
+                  </h3>
+	              <?php
+              }
 	}
 
 	private function formTable()
