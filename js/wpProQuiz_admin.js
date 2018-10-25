@@ -3089,8 +3089,9 @@ jQuery(document).ready(function ($) {
                     },
 
                     generateArrayIndexComment: function (refId, userId) {
-                        var accessFront = $('input[name="accessFront"]:checked').val();
-                        var passTest = $('input[name="passTest"]:checked').val();
+                        var accessFront = Number($('input[name="accessFront"]').is(':checked'));
+                        var passTest = Number($('input[name="passTest"]').is(':checked'));
+                        //Number($('#wpProQuiz_overviewOnlyCompleted').is(':checked'))
                        // type = (type == 'single' || type == 'multiple') ? 'classic_answer' : type;
                         var commentItem= {};
 

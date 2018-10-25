@@ -363,6 +363,19 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
             </tfoot>
         </table>
 
+                 <div style="margin-top: 10px;">
+                     <div style="padding-top: 5px;">
+                             <label>
+                                     <input type="checkbox" class="wpProQuiz_accessFront" name="accessFront" >
+                                     Видимость студенту </label>
+                        </div>
+                    <div style="padding-top: 5px;">
+                             <label>
+                                     <input type="checkbox" class="wpProQuiz_passTest" name="passTest" >
+                                     Зачет                          </label>
+                         </div>
+                 </div>
+
         <div style="margin-top: 10px;">
             <div style="float: left;">
                 <a class="button-secondary wpProQuiz_update" href="#"><?php _e('Refresh', 'wp-pro-quiz'); ?></a>
