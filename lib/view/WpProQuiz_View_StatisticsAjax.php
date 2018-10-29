@@ -224,6 +224,7 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
             </thead>
             <tbody>
             <?php
+            $index=0;
             $gCorrect = $gIncorrect = $gHintCount = $gPoints = $gGPoints = $gTime = $gSolvedCount = 0;
 
             foreach ($this->userStatistic as $cat) {
@@ -236,7 +237,6 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                     </th>
                 </tr>
                 <?php foreach ($cat['questions'] as $q) {
-                    $index = 1;
                     $sum = $q['correct'] + $q['incorrect'];
 
                     $cPoints += $q['points'];
@@ -246,9 +246,10 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                     $cHintCount += $q['hintCount'];
                     $cTime += $q['time'];
                     $cSolvedCount += $q['solvedCount'];
+                    $index++;
                     ?>
                     <tr>
-                        <th><?php echo $index++; ?></th>
+                        <th><?php echo $index; ?></th>
                         <th>
                             <?php if (!$this->avg && $q['statistcAnswerData'] !== null) {
                                 echo '<a href="#" class="statistic_data">' . esc_html($q['questionName']) . '</a>';

@@ -125,8 +125,10 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
             <tbody>
 			<?php
 			$gCorrect = $gIncorrect = $gHintCount = $gPoints = $gGPoints = $gTime = $gSolvedCount = 0;
+			$index = 0;
 
 			foreach ($this->userStatistic as $cat) {
+
 				$cCorrect = $cIncorrect = $cHintCount = $cPoints = $cGPoints = $cTime = $cSolvedCount = 0;
 				?>
                 <tr class="categoryTr">
@@ -136,7 +138,7 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
                     </th>
                 </tr>
 				<?php foreach ($cat['questions'] as $q) {
-					$index = 1;
+
 					$sum = $q['correct'] + $q['incorrect'];
 
 					$cPoints += $q['points'];
@@ -146,9 +148,10 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
 					$cHintCount += $q['hintCount'];
 					$cTime += $q['time'];
 					$cSolvedCount += $q['solvedCount'];
+					$index++;
 					?>
                     <tr>
-                        <th><?php echo $index++; ?></th>
+                        <th><?php echo $index; ?></th>
                         <th>
 							<?php if (!$this->avg && $q['statistcAnswerData'] !== null) {
 								echo '<a href="#" class="statistic_data">' . esc_html($q['questionName']) . '</a>';
