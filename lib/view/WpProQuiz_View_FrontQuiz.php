@@ -620,7 +620,7 @@ class WpProQuiz_View_FrontQuiz extends WpProQuiz_View_View
         ?>
         <div class="wpProQuiz_text">
             <p>
-                <?php echo do_shortcode(apply_filters('comment_text', $this->quiz->getText())); ?>
+                <?php /*echo do_shortcode(apply_filters('comment_text', $this->quiz->getText()));*/ ?>
             </p>
 
             <?php
