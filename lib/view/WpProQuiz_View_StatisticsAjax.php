@@ -142,12 +142,12 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
             }
 
             .wpProQuiz_answerCorrect {
-                background: <?php echo $this->statisticModel->isPassTest()?'#6DB46D':'FFFFFF'?> !important;
+                background: #6DB46D !important;
                 font-weight: bold !important;
             }
 
             .wpProQuiz_answerIncorrect {
-                background: <?php echo $this->statisticModel->isPassTest()?'#FF9191':'#FFFFFF'?> !important;
+                background: #FF9191 !important;
                 font-weight: bold !important;
             }
 

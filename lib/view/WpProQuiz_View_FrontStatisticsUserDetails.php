@@ -39,7 +39,7 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
             }
 
             .wpProQuiz_answerCorrect {
-                background: <?php echo $this->statisticModel->isPassTest()?'#6DB46D':'FFFFFF'?> !important;
+                background: <?php echo $this->statisticModel->isPassTest()?'#6DB46D':'#FFFFFF'?> !important;
                 font-weight: bold !important;
             }
 
@@ -221,6 +221,7 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
                     <th><?php echo WpProQuiz_Helper_Until::convertToTimeString($cTime); ?></th>
                     <th><?php echo $cPoints; ?></th>
                     <th style="font-weight: bold;"><?php echo $result; ?></th>
+	                <?php  echo $this->statisticModel->isPassTest()?'<th style="color: green;">  Зачет  </th>':'<th style="color: red;">   Не зачет  </th>'?>
                 </tr>
 
                 <tr>
@@ -256,6 +257,8 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
                 <th><?php echo WpProQuiz_Helper_Until::convertToTimeString($gTime); ?></th>
                 <th><?php echo $gPoints; ?></th>
                 <th style="font-weight: bold;"><?php echo $result; ?></th>
+	            <?php  echo $this->statisticModel->isPassTest()?'<th style="color: green;">  Зачет  </th>':'<th style="color: red;">Не зачет</th>'?>
+
             </tr>
             </tfoot>
         </table>
@@ -530,7 +533,7 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
                         </div>
                     </td>
                     <td style="padding: 5px; vertical-align: top;">
-                                                <textarea  readonly rows="2" cols="50" class="large-text wpProQuiz_text" name="commentData[<?php echo $newcomment?'':$CommentItem->getCommentId();?>][comment]" style="resize:vertical;"><?php
+                                                <textarea  readonly rows="6" cols="50" class="large-text wpProQuiz_text" name="commentData[<?php echo $newcomment?'':$CommentItem->getCommentId();?>][comment]" style="resize:vertical;"><?php
 	                                                echo $newcomment?'':$CommentItem->getComment();
 	                                                ?> </textarea>
                     </td>
