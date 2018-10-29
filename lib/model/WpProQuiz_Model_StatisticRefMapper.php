@@ -460,7 +460,7 @@ class WpProQuiz_Model_StatisticRefMapper extends WpProQuiz_Model_Mapper
 		$result = $this->_wpdb->get_results(
 			$this->_wpdb->prepare('
 				SELECT
-					u.`user_login`, u.`display_name`, u.ID AS user_id,
+					u.`user_login`, u.`display_name`, u.ID AS user_id, qz.name as quiz_name,
 					sf.*,
 					SUM(s.correct_count) AS correct_count,
 					SUM(s.incorrect_count) AS incorrect_count,
@@ -469,6 +469,7 @@ class WpProQuiz_Model_StatisticRefMapper extends WpProQuiz_Model_Mapper
 					SUM(q.points) AS g_points 
 				FROM
 					' . $this->_tableStatisticRef . ' AS sf
+					INNER JOIN ' . $this->_tableMaster . ' AS qz ON(sf.quiz_id = qz.id)
 					INNER JOIN ' . $this->_tableStatistic . ' AS s ON(s.statistic_ref_id = sf.statistic_ref_id)
 					LEFT JOIN ' . $this->_wpdb->users . ' AS u ON(u.ID = sf.user_id)
 					INNER JOIN ' . $this->_tableQuestion . ' AS q ON(q.id = s.question_id)

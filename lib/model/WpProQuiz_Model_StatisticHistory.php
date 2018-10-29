@@ -4,9 +4,11 @@ class WpProQuiz_Model_StatisticHistory extends WpProQuiz_Model_Model
 {
 
     protected $_userId = 0;
-    protected $_userName = '';
+	protected $_userName = '';
+
     protected $_statisticRefId = 0;
     protected $_quizId = 0;
+	protected $_quizName = '';
     protected $_createTime = 0;
     protected $_correctCount = 0;
     protected $_incorrectCount = 0;
@@ -69,6 +71,19 @@ class WpProQuiz_Model_StatisticHistory extends WpProQuiz_Model_Model
     {
         return $this->_quizId;
     }
+
+
+	public function setQuizName($_quizName)
+	{
+		$this->_quizName = (string)$_quizName;
+
+		return $this;
+	}
+
+	public function getQuizName()
+	{
+		return $this->_quizName;
+	}
 
     public function setCreateTime($_createTime)
     {

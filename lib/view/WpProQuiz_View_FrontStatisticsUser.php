@@ -23,7 +23,7 @@ class WpProQuiz_View_FrontStatisticsUser extends WpProQuiz_View_View {
 		<table class="wp-list-table widefat">
 			<thead>
 			<tr>
-				<th scope="col"><?php _e('Студент', 'wp-pro-quiz'); ?></th>
+				<th scope="col"><?php _e('Тест', 'wp-pro-quiz'); ?></th>
 
 
 
@@ -47,8 +47,8 @@ class WpProQuiz_View_FrontStatisticsUser extends WpProQuiz_View_View {
 					/* @var $model WpProQuiz_Model_StatisticHistory */ ?>
 					<tr>
 						<th>
-							<a href="<?php home_url()?>test-details/?userRefid=<?php echo $model->getStatisticRefId(); ?>&quizId=<?php echo $model->getQuizId(); ?>" class="user_statistic"
-							   data-ref_id="<?php echo $model->getStatisticRefId(); ?>"><?php echo $model->getUserName(); ?></a>
+							<a href="<?php home_url()?>test-details/?userRefid=<?php echo $model->getStatisticRefId(); ?>&quizId=<?php echo $model->getQuizId();?>" class="user_statistic"
+							   data-ref_id="<?php echo $model->getStatisticRefId(); ?>"><?php echo $model->getQuizName(); ?></a>
 
 						</th>
 						<?php foreach ($model->getFormOverview() as $form) {
