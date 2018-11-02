@@ -406,7 +406,7 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
                         <li class="<?php echo $correct ?>">
                             <label>
                                 <input type="text" disabled="disabled"
-                                       style="width: 300px; padding: 5px;margin-bottom: 5px;"
+                                       style="width: 90%; padding: 5px;margin-bottom: 5px;"
                                        value="<?php echo esc_attr($sAnswerData[0]); ?>">
                             </label>
                             <br>
