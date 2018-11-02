@@ -586,7 +586,10 @@ wpProQuizReady(function () {
                 free_answer: function () {
                     var $li = $questionList.children();
                     var value = $li.find('.wpProQuiz_questionInput').attr('disabled', 'disabled').val();
-
+                      console.log(($.inArray('!', data.correct)));
+                    if ($.inArray('!', data.correct) == 0) {
+                        plugin.methode.marker($li, true);
+                    }else
                     if ($.inArray($.trim(value).toLowerCase(), data.correct) >= 0) {
                         plugin.methode.marker($li, true);
                     } else {

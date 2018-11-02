@@ -448,8 +448,10 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                         $t = str_replace("\r", "\n", $t);
                         $t = explode("\n", $t);
                         $t = array_values(array_filter(array_map('trim', $t)));
-
-                        if (isset($sAnswerData[0]) && in_array(strtolower(trim($sAnswerData[0])), $t)) {
+	                    if($t[0]=='!')
+	                    {
+		                    $correct = 'wpProQuiz_answerCorrect';
+	                    }elseif (isset($sAnswerData[0]) && in_array(strtolower(trim($sAnswerData[0])), $t)) {
                             $correct = 'wpProQuiz_answerCorrect';
                         } else {
                             $correct = 'wpProQuiz_answerIncorrect';
@@ -462,8 +464,12 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                                        value="<?php echo esc_attr($sAnswerData[0]); ?>">
                             </label>
                             <br>
-                            <?php _e('Correct', 'wp-pro-quiz'); ?>:
-                            <?php echo implode(', ', $t); ?>
+	                        <?php if(!empty($qAnswerData[$i]->getIncorrectMsg())) { ?>
+		                        <?php _e( 'Correct', 'wp-pro-quiz' ); ?>:
+		                        <?php
+		                        $qAnswerData[ $i ]->getIncorrectMsg();
+		                        // echo implode(', ', $t);
+	                        }?>
                         </li>
                     <?php } else {
                         if ($anserType === 'sort_answer') {
