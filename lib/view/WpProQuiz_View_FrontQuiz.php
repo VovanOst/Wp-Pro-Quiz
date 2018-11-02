@@ -22,7 +22,7 @@ class WpProQuiz_View_FrontQuiz extends WpProQuiz_View_View
         $names = array(
             'start_quiz' => __('Start quiz', 'wp-pro-quiz'),
             'restart_quiz' => __('Restart quiz', 'wp-pro-quiz'),
-            'quiz_summary' => __('Quiz-summary', 'wp-pro-quiz'),
+            'quiz_summary' => __('Перейти к завершению теста', 'wp-pro-quiz'),
             'finish_quiz' => __('Finish quiz', 'wp-pro-quiz'),
             'quiz_is_loading' => __('Quiz is loading...', 'wp-pro-quiz'),
             'lock_box_msg' => __('You have already completed the quiz before. Hence you can not start it again.',
