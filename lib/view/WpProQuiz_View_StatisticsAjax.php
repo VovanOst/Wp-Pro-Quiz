@@ -459,7 +459,7 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                         ?>
                         <li class="<?php echo $correct ?>">
                             <label>
-                                <textarea class="wpProQuiz_questionInput" type="text" disabled="disabled"
+                                <textarea class="wpProQuiz_questionInput" type="text" disabled="disabled" rows="7" cols="50"
                                           style="width: 90%;"><?php
                                     echo esc_attr($sAnswerData[0]);
                                     ?></textarea>

@@ -405,13 +405,13 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
 						?>
                         <li class="<?php echo $correct ?>">
                             <label>
-                                <textarea class="wpProQuiz_questionInput" type="text" disabled="disabled"
+                                <textarea class="wpProQuiz_questionInput" type="text" disabled="disabled" rows="7" cols="50"
                                           style="width: 90%;"><?php
 	                                echo esc_attr($sAnswerData[0]);
 	                                ?></textarea>
                             </label>
                             <br>
-	                        <?php if(!empty($incorrectMsg)&& $qAnswerData[$i]->isCorrect()==false) { ?>
+	                        <?php if(!empty($incorrectMsg)&& $qAnswerData[$i]->isCorrect()==false && $this->statisticModel->isPassTest()) { ?>
 		                        <?php _e( 'Correct', 'wp-pro-quiz' ); ?>:
 		                        <?php
 		                        echo $incorrectMsg;

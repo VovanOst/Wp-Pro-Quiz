@@ -946,7 +946,7 @@ class WpProQuiz_View_FrontQuiz extends WpProQuiz_View_View
                                                 if ($question->getAnswerType() === 'free_answer') { ?>
                                                     <?php $json[$question->getId()]['correct'] = $this->getFreeCorrect($v); ?>
                                                     <label>
-                                                        <textarea class="wpProQuiz_questionInput" type="text"
+                                                        <textarea class="wpProQuiz_questionInput" type="text" rows="7" cols="50"
                                                                name="question_<?php echo $this->quiz->getId(); ?>_<?php echo $question->getId(); ?>"
                                                                style="width: 90%;"></textarea>
                                                     </label>
