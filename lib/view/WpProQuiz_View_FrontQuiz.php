@@ -946,9 +946,9 @@ class WpProQuiz_View_FrontQuiz extends WpProQuiz_View_View
                                                 if ($question->getAnswerType() === 'free_answer') { ?>
                                                     <?php $json[$question->getId()]['correct'] = $this->getFreeCorrect($v); ?>
                                                     <label>
-                                                        <input class="wpProQuiz_questionInput" type="text"
+                                                        <textarea class="wpProQuiz_questionInput" type="text"
                                                                name="question_<?php echo $this->quiz->getId(); ?>_<?php echo $question->getId(); ?>"
-                                                               style="width: 90%;">
+                                                               style="width: 90%;"></textarea>
                                                     </label>
                                                 <?php } else {
                                                     if ($question->getAnswerType() === 'matrix_sort_answer') { ?>
