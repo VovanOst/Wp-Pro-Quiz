@@ -274,7 +274,7 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                         <tr style="display: table-row;">
                             <th colspan="9">
                                 <?php $this->showUserAnswer($q['questionAnswerData'], $q['statistcAnswerData'],
-                                    $q['answerType']); ?>
+                                    $q['answerType'],$q['incorrectMsg']); ?>
                             </th>
                         </tr>
                          <tr style="display: table-row">
@@ -398,7 +398,7 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
         <?php
     }
 
-    private function showUserAnswer($qAnswerData, $sAnswerData, $anserType)
+    private function showUserAnswer($qAnswerData, $sAnswerData, $anserType, $incorrectMsg)
     {
         $matrix = array();
 
@@ -464,11 +464,13 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                                        value="<?php echo esc_attr($sAnswerData[0]); ?>">
                             </label>
                             <br>
-	                        <?php if(!empty($qAnswerData[$i]->getIncorrectMsg())) { ?>
+	                        <?php if(!empty($incorrectMsg)&& $qAnswerData[$i]->isCorrect()==false) { ?>
 		                        <?php _e( 'Correct', 'wp-pro-quiz' ); ?>:
 		                        <?php
-		                        $qAnswerData[ $i ]->getIncorrectMsg();
-		                        // echo implode(', ', $t);
+		                         echo $incorrectMsg;
+		                        // echo $qAnswerData[$i]->isCorrect()? 'true' : 'false';
+		                        //echo var_export($qAnswerData[$i]->isCorrect());
+		                         //echo implode(', ', $t);
 	                        }?>
                         </li>
                     <?php } else {

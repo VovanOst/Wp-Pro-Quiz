@@ -359,6 +359,7 @@ class WpProQuiz_Controller_Statistics extends WpProQuiz_Controller_Controller
                 'gPoints' => $statistic->getGPoints(),
                 'statistcAnswerData' => $statistic->getStatisticAnswerData(),
                 'questionName' => $statistic->getQuestionName(),
+	            'incorrectMsg' => $statistic->getIncorrectMsg(),
                 'questionAnswerData' => $statistic->getQuestionAnswerData(),
                 'answerType' => $statistic->getAnswerType(),
                 'solvedCount' => $statistic->getSolvedCount()
