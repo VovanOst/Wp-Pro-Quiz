@@ -332,6 +332,7 @@ class WpProQuiz_Controller_Front
 					'gPoints' => $statistic->getGPoints(),
 					'statistcAnswerData' => $statistic->getStatisticAnswerData(),
 					'questionName' => $statistic->getQuestionName(),
+					'incorrectMsg' => $statistic->getIncorrectMsg(),
 					'questionAnswerData' => $statistic->getQuestionAnswerData(),
 					'answerType' => $statistic->getAnswerType(),
 					'solvedCount' => $statistic->getSolvedCount()

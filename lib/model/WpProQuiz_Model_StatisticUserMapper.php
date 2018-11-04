@@ -20,6 +20,7 @@ class WpProQuiz_Model_StatisticUserMapper extends WpProQuiz_Model_Mapper
 					q.id AS question_id,
 					q.title AS question_name,
 					q.answer_data AS question_answer_data,
+					q.incorrect_msg,
 					q.answer_type,
 					SUM(q.points * (s.correct_count + s.incorrect_count)) AS g_points,
 					c.category_id,

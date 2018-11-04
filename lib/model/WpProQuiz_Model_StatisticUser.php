@@ -17,6 +17,7 @@ class WpProQuiz_Model_StatisticUser extends WpProQuiz_Model_Model
     protected $_questionAnswerData = null;
     protected $_answerType = '';
     protected $_solvedCount = 0;
+    protected $_incorrectMsg='';
 	protected $_accessFront = false;
 	protected $_passTest = false;
 
@@ -191,6 +192,18 @@ class WpProQuiz_Model_StatisticUser extends WpProQuiz_Model_Model
     {
         return $this->_solvedCount;
     }
+
+	public function setIncorrectMsg($_incorrectMsg)
+	{
+		$this->_incorrectMsg = (string)$_incorrectMsg;
+
+		return $this;
+	}
+
+	public function getIncorrectMsg()
+	{
+		return $this->_incorrectMsg;//incorrect_msg
+	}
 
 	public function setPassTest($_passTest)
 	{
