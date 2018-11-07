@@ -1433,6 +1433,7 @@ wpProQuizReady(function () {
                 globalElements.results.show();
 
                 plugin.methode.scrollTo(globalElements.results);
+                parent.jQuery.fancybox.close();
             },
 
             setCategoryOverview: function () {
