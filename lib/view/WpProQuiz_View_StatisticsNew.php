@@ -143,10 +143,10 @@ class WpProQuiz_View_StatisticsNew extends WpProQuiz_View_View
                                     <?php _e('How many entries should be shown on one page:', 'wp-pro-quiz'); ?>
                                     <select id="wpProQuiz_historyPageLimit">
                                         <option>1</option>
-                                        <option selected="selected">10</option>
+                                        <option>10</option>
                                         <option>50</option>
                                         <option>100</option>
-                                        <option>500</option>
+                                        <option selected="selected">500</option>
                                         <option>1000</option>
                                     </select>
                                 </label>
@@ -192,8 +192,8 @@ class WpProQuiz_View_StatisticsNew extends WpProQuiz_View_View
                 <div style="float: right;">
                     <a class="button-secondary wpProQuiz_update" href="#"><?php _e('Refresh', 'wp-pro-quiz'); ?></a>
                     <?php if (current_user_can('wpProQuiz_reset_statistics')) { ?>
-                        <a class="button-secondary wpProQuiz_resetComplete" href="#"><?php _e('Reset entire statistic',
-                                'wp-pro-quiz'); ?></a>
+                        <!--a class="button-secondary wpProQuiz_resetComplete" href="#"><?php _e('Reset entire statistic',
+                                'wp-pro-quiz'); ?></a-->
                     <?php } ?>
                 </div>
 

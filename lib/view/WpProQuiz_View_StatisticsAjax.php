@@ -602,7 +602,7 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                                         </div>
                                     </td>
                                     <td style="padding: 5px; vertical-align: top;">
-                                                <textarea rows="2" cols="50" class="large-text wpProQuiz_text" name="commentData[<?php echo $newcomment?'':$CommentItem->getCommentId();?>][comment]" style="resize:vertical;"><?php
+                                                <textarea rows="7" cols="50" class="large-text wpProQuiz_text" name="commentData[<?php echo $newcomment?'':$CommentItem->getCommentId();?>][comment]" style="resize:vertical;"><?php
 	                            echo $newcomment?'':$CommentItem->getComment();
 	                          ?> </textarea>
                                     </td>

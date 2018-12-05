@@ -403,6 +403,7 @@ class WpProQuiz_Controller_Statistics extends WpProQuiz_Controller_Controller
         }
 
         $statisticRefMapper = new WpProQuiz_Model_StatisticRefMapper();
+	    $LockMapper= new WpProQuiz_Model_LockMapper();
         $commentMapper=new WpProQuiz_Model_CommentMapper();
 
 	    //$commentMapper->update

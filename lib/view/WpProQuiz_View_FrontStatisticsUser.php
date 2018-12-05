@@ -47,7 +47,7 @@ class WpProQuiz_View_FrontStatisticsUser extends WpProQuiz_View_View {
 					/* @var $model WpProQuiz_Model_StatisticHistory */ ?>
 					<tr>
 						<th>
-							<a href="<?php home_url()?>test-details/?userRefid=<?php echo $model->getStatisticRefId(); ?>&quizId=<?php echo $model->getQuizId();?>" class="user_statistic"
+							<a href="<?php home_url()?>test-details/?userRefid=<?php echo $model->getStatisticRefId(); ?>&quizId=<?php echo $model->getQuizId();?>" class="fancybox-iframe"
 							   data-ref_id="<?php echo $model->getStatisticRefId(); ?>"><?php echo $model->getQuizName(); ?></a>
 
 						</th>
