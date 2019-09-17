@@ -59,7 +59,7 @@ class WpProQuiz_Controller_Admin
             'dayNamesMin' => array_values($wp_locale->weekday_initial),
 //			'dateFormat'        => WpProQuiz_Helper_Until::convertPHPDateFormatToJS(get_option('date_format', 'm/d/Y')),
             //e.g. "9 de setembro de 2014" -> change to "hard" dateformat
-            'dateFormat' => 'dd.mm.yyyy'//'mm/dd/yy',
+            'dateFormat' => 'dd.mm.yy',//'mm/dd/yy'
             'firstDay' => get_option('start_of_week'),
             'isRTL' => $isRtl
         );
