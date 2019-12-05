@@ -7,6 +7,28 @@
     font-weight: bold !important;
 }
 
+.wpProQuiz_answerCorrect input {
+    display: none;
+}
+.wpProQuiz_answerCorrect span {/* <-- стилизируем новый */
+  height: 12px;
+  width: 12px;
+  border: 1px solid gray;
+  display: inline-block;
+  position: relative;
+  background-color:#FFF;
+  border-radius:2px;
+  padding:3px;
+}
+.wpProQuiz_answerCorrect [type=checkbox]:checked + span:before {/* <-- ставим иконку, когда чекбокс включен  */
+  content: '\2714';
+  position: absolute;
+  top: -5px;
+  left: 0;
+  font-size:23px;
+  color:green;
+}
+
 .wpProQuiz_answerIncorrect {
     background: #FF9191 !important;
     font-weight: bold !important;
@@ -603,6 +625,7 @@ span.wpProQuiz_catPercent {
 }
 
 .wpProQuiz_quiz input[type="checkbox"] {
+	
     -webkit-appearance: checkbox;
 }
 

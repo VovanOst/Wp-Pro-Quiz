@@ -389,8 +389,8 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
             </div>
             <div style="float: right;">
                 <?php if (current_user_can('wpProQuiz_reset_statistics')) { ?>
-                    <a class="button-secondary" href="#" id="wpProQuiz_resetUserStatistic"><?php _e('Reset statistics',
-                            'wp-pro-quiz'); ?></a>
+                    <!--a class="button-secondary" href="#" id="wpProQuiz_resetUserStatistic"><?php _e('Reset statistics',
+                            'wp-pro-quiz'); ?></a-->
                 <?php } ?>
             </div>
             <div style="clear: both;"></div>

@@ -244,8 +244,8 @@ class WpProQuiz_View_FrontStatisticsUser extends WpProQuiz_View_View {
 				<div style="float: right;">
 					<a class="button-secondary wpProQuiz_update" href="#"><?php _e('Refresh', 'wp-pro-quiz'); ?></a>
 					<?php if (current_user_can('wpProQuiz_reset_statistics')) { ?>
-						<a class="button-secondary wpProQuiz_resetComplete" href="#"><?php _e('Reset entire statistic',
-								'wp-pro-quiz'); ?></a>
+						<!--a class="button-secondary wpProQuiz_resetComplete" href="#"><?php _e('Reset entire statistic',
+								'wp-pro-quiz'); ?></a-->
 					<?php } ?>
 				</div>
 

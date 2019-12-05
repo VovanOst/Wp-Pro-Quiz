@@ -408,7 +408,7 @@ class WpProQuiz_Model_StatisticRefMapper extends WpProQuiz_Model_Mapper
 				GROUP BY
 					sf.statistic_ref_id
 				ORDER BY
-					sf.create_time DESC
+					sf.create_time 
 				LIMIT
 					%d, %d
 			', $quizId, $page, $limit),
