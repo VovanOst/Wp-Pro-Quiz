@@ -22,6 +22,19 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
 		?>
 
         <style>
+            .table-box {
+                max-width: 1024px;
+            }
+            .table-box p {
+                font-size: larger;
+                font-weight: bold;
+            }
+
+            @media screen and (max-width: 640px) {
+                .table-box {
+                    overflow-x: scroll;
+                }
+            }
             .wpProQuiz_questionList {
                 margin-bottom: 10px !important;
                 background: #F8FAF5 !important;
@@ -106,6 +119,7 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
 		<?php if($this->statisticModel->isAccessFront())
             {
 		    ?>
+                <div class="table-box">
         <table class="wp-list-table widefat" style="margin-top: 20px;">
             <thead>
             <tr>
@@ -264,7 +278,8 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
 
             </tr>
             </tfoot>
-        </table>
+
+
 
 		<?php } else
               { ?>
@@ -336,6 +351,7 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
 							<?php } ?>
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 </div>
             </div>
