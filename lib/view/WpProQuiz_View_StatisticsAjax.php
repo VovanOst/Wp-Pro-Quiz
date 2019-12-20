@@ -466,13 +466,16 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                             </label>
                             <br>
 	                        <?php if(!empty($incorrectMsg)&& $qAnswerData[$i]->isCorrect()==false) { ?>
-		                        <?php _e( 'Correct', 'wp-pro-quiz' ); ?>:
+		                        <?php _e( 'Correct', 'wp-pro-quiz' ); ?>:</br>
+                            <textarea class="wpProQuiz_questionInput" type="text" disabled="disabled" rows="7" cols="50"
+                                      style="width: 90%;">
 		                        <?php
 		                         echo $incorrectMsg;
 		                        // echo $qAnswerData[$i]->isCorrect()? 'true' : 'false';
 		                        //echo var_export($qAnswerData[$i]->isCorrect());
 		                         //echo implode(', ', $t);
 	                        }?>
+                                 </textarea>
                         </li>
                     <?php } else {
                         if ($anserType === 'sort_answer') {
@@ -597,7 +600,7 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
                                         </div>
                                         <div style="padding-top: 5px;" class="wpProQuiz_answerPoints">
                                             <label>
-                                                <input type="number" min="0" class="small-text wpProQuiz_points" name="commentData[<?php echo $newcomment?'':$CommentItem->getCommentId();?>][points]" value="1">
+                                                <input type="number" min="-100" class="small-text wpProQuiz_points" name="commentData[<?php echo $newcomment?'':$CommentItem->getCommentId();?>][points]" value="1">
                                                 Баллы                                </label>
                                         </div>
                                     </td>
