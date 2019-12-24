@@ -421,6 +421,17 @@ class WpProQuiz_Controller_Statistics extends WpProQuiz_Controller_Controller
             case 1: //alles
                 $statisticRefMapper->deleteAll($data['quizId']);
                 break;
+	        case 2: //RefId or UserId
+		        if ($data['refId']) {
+			        //$statisticRefMapper->deleteByRefId($data['refId']);
+		        } else {
+			        if ($data['userId'] != '') {
+				        //$statisticRefMapper->deleteByUserIdQuizId($data['userId'], $data['quizId']);
+				        $LockMapper->deleteOldLock(0, $data['quizId'], time(), WpProQuiz_Model_Lock::TYPE_QUIZ,
+					        $data['userId']);
+			        }
+		        }
+		        break;
 	        case 3: //alles
 		        $r = array();
 		        foreach ($data['commentData'] as $commentitem)

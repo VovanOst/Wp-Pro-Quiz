@@ -71,6 +71,10 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
 								<a style="color: red;" class="wpProQuiz_delete" href="#"><?php _e('Delete',
                                         'wp-pro-quiz'); ?></a>
 							</span>
+							<!--span>
+								<a style="color: blue;" class="wpProQuiz_reset" href="#"><?php _e('Разблокировать',
+                                        'wp-pro-quiz'); ?></a>
+							</span-->
                             </div>
 
                         </th>
@@ -869,6 +873,10 @@ class WpProQuiz_View_StatisticsAjax extends WpProQuiz_View_View
 							<span>
 								<a style="color: red;" class="wpProQuiz_delete" href="#"><?php _e('Delete',
                                         'wp-pro-quiz'); ?></a>
+							</span>
+                                <span>
+								<a style="color: blue;" class="wpProQuiz_reset" href="#"><?php _e('Разблокировать тест',
+										'wp-pro-quiz'); ?></a>
 							</span>
                             </div>
 

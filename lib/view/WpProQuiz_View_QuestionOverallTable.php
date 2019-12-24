@@ -78,6 +78,12 @@ class WpProQuiz_View_QuestionOverallTable extends WP_List_Table
                     'wp-pro-quiz') . '</a>',
                 $item['quizId'], $item['ID']);
         }
+		
+		  if (current_user_can('wpProQuiz_reset')) {
+            $actions['wpProQuiz_reset'] = sprintf('<a style="color: red;" href="?page=wpProQuiz&module=question&action=reset&quiz_id=%1$s&id=%2$s">' . __('Reset',
+                    'wp-pro-quiz') . '</a>',
+                $item['quizId'], $item['ID']);
+        }
 
         if (current_user_can('wpProQuiz_edit_quiz')) {
             return sprintf('<a class="row-title" href="?page=wpProQuiz&module=question&action=addEdit&quiz_id=%1$s&questionId=%2$s">%3$s</a> %4$s',
@@ -95,7 +101,10 @@ class WpProQuiz_View_QuestionOverallTable extends WP_List_Table
         if (current_user_can('wpProQuiz_delete_quiz')) {
             $actions['delete'] = __('Delete', 'wp-pro-quiz');
         }
-
+       
+	    if (current_user_can('wpProQuiz_reset_quiz')) {
+            $actions['reset'] = __('Reset', 'wp-pro-quiz');
+        }
         if (current_user_can('wpProQuiz_edit_quiz')) {
             $actions['set_category'] = __('Set Category', 'wp-pro-quiz');
         }

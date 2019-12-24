@@ -3045,6 +3045,29 @@ jQuery(document).ready(function ($) {
                         });
                     },
 
+                    resetUserStatistic: function (refId, userId) {
+                        if (!confirm(wpProQuizLocalize.reset_statistics_msg))
+                            return false;
+
+                        var data = {
+                            refId: refId,
+                            userId: userId,
+                            quizId: quizId,
+                            type: 2
+                        };
+                       // alert('refId:'+refId+'userId'+userId);
+                        global.ajaxPost('statisticResetNew', data, function () {
+                            $('#wpProQuiz_user_overlay').hide();
+
+                            historyFilter.changeFilter();
+                            methode.loadHistoryAjax();
+
+                            overviewFilter.changeFilter();
+                            methode.loadOverviewAjax();
+
+                        });
+                    },
+
                     deleteAll: function () {
                         if (!confirm(wpProQuizLocalize.reset_statistics_msg))
                             return false;
@@ -3194,6 +3217,12 @@ jQuery(document).ready(function ($) {
                                 return false;
                             });
 
+                            content.find('.wpProQuiz_reset').click(function () {
+                                deleteMethode.resetUserStatistic($(this).parents('tr').find('.user_statistic').data('ref_id'), 0);
+
+                                return false;
+                            });
+
                             methode.loadBox(false);
                         });
 
@@ -3303,6 +3332,12 @@ jQuery(document).ready(function ($) {
 
                             content.find('.wpProQuiz_delete').click(function () {
                                 deleteMethode.deleteUserStatistic(0, $(this).parents('tr').find('.user_statistic').data('user_id'));
+
+                                return false;
+                            });
+
+                            content.find('.wpProQuiz_reset').click(function () {
+                                deleteMethode.resetUserStatistic(0, $(this).parents('tr').find('.user_statistic').data('user_id'));
 
                                 return false;
                             });

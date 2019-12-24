@@ -410,8 +410,7 @@ class WpProQuiz_View_Statistics extends WpProQuiz_View_View
                                 ?>
                                 <tr>
                                     <td style="padding: 5px;"><?php echo esc_html($form->getFieldname()); ?></td>
-                                    <td id="form_id_<?php echo $form->getFormId(); ?>">asdfffffffffffffffffffffsadfsdfa
-                                        sf asd fas
+                                    <td id="form_id_<?php echo $form->getFormId(); ?>">
                                     </td>
                                 </tr>
                             <?php } ?>
