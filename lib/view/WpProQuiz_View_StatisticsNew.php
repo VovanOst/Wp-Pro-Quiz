@@ -160,6 +160,14 @@ class WpProQuiz_View_StatisticsNew extends WpProQuiz_View_View
                                 ?>
                             </li>
                             <li>
+		                        <?php
+		                        $isFrontAccess = '<input type="checkbox" id="isFrontAccess">';
+		                        $isPassTest = '<input type="checkbox" id="isPassTest">';
+
+		                        printf(__('Тест проверен: %s Зачет: %s', 'wp-pro-quiz'), $isFrontAccess, $isPassTest);
+		                        ?>
+                            </li>
+                            <li>
                                 <input type="button" value="<?php _e('Filter', 'wp-pro-quiz'); ?>"
                                        class="button-secondary" id="filter">
                             </li>

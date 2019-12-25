@@ -249,8 +249,10 @@ class WpProQuiz_Controller_Statistics extends WpProQuiz_Controller_Controller
         $startTime = (int)$data['dateFrom'];
         $endTime = (int)$data['dateTo'] ? $data['dateTo'] + 86400 : 0;
 
+
+
         $statisticModel = $statisticRefMapper->fetchHistory($quizId, $start, $limit, $data['users'], $startTime,
-            $endTime);
+            $endTime, $data['isFrontAccess'], $data['isPassTest']);
 	    //$commentModel=$commentMapper->fetchByRefId(5,1,false);
 	   /* foreach ($commentModel as $modell) {
 		    $modell->GetComment();

@@ -2981,7 +2981,9 @@ jQuery(document).ready(function ($) {
                         pageLimit: 100,
                         dateFrom: 0,
                         dateTo: 0,
-                        generateNav: 0
+                        generateNav: 0,
+                        isFrontAccess: 0,
+                        isPassTest:0
                     },
 
                     changeFilter: function () {
@@ -2996,7 +2998,10 @@ jQuery(document).ready(function ($) {
                             pageLimit: $('#wpProQuiz_historyPageLimit').val(),
                             dateFrom: getTime($('#datepickerFrom')),
                             dateTo: getTime($('#datepickerTo')),
-                            generateNav: 1
+                            generateNav: 1,
+                            isFrontAccess:Number($('#isFrontAccess').is(':checked')),
+                            isPassTest:Number($('#isPassTest').is(':checked'))
+
                         });
 
                         return this.data;
