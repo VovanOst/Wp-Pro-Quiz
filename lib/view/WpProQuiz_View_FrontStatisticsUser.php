@@ -28,11 +28,12 @@ class WpProQuiz_View_FrontStatisticsUser extends WpProQuiz_View_View {
 
 
 				<th scope="col" style="width: 200px;"><?php _e('Date', 'wp-pro-quiz'); ?></th>
-				<th scope="col" style="width: 100px;"><?php _e('Correct', 'wp-pro-quiz'); ?></th>
-				<th scope="col" style="width: 100px;"><?php _e('Incorrect', 'wp-pro-quiz'); ?></th>
-				<th scope="col" style="width: 100px;"><?php _e('Solved', 'wp-pro-quiz'); ?></th>
+				<!--th scope="col" style="width: 100px;"><?php _e('Correct', 'wp-pro-quiz'); ?></th-->
+				<!--th scope="col" style="width: 100px;"><?php _e('Incorrect', 'wp-pro-quiz'); ?></th-->
+				<!--th scope="col" style="width: 100px;"><?php _e('Solved', 'wp-pro-quiz'); ?></th-->
 				<th scope="col" style="width: 100px;"><?php _e('Points', 'wp-pro-quiz'); ?></th>
-				<th scope="col" style="width: 60px;"><?php _e('Результат', 'wp-pro-quiz'); ?></th>
+				<th scope="col" style="width: 60px;"><?php _e('Зачет', 'wp-pro-quiz'); ?></th>
+                <th scope="col" style="width: 60px;"><?php _e('Примечание', 'wp-pro-quiz'); ?></th>
 			</tr>
 			</thead>
 			<tbody id="wpProQuiz_statistics_form_data">
@@ -55,13 +56,18 @@ class WpProQuiz_View_FrontStatisticsUser extends WpProQuiz_View_View {
 							echo '<th>' . esc_html($form) . '</th>';
 						} ?>
 						<th><?php echo $model->getFormatTime(); ?></th>
-						<th style="color: green;"><?php echo $model->getFormatCorrect(); ?></th>
-						<th style="color: red;"><?php echo $model->getFormatIncorrect(); ?></th>
-						<th><?php echo $model->getSolvedCount() < 0 ? '---' : sprintf(__('%d of %d', 'wp-pro-quiz'),
+						<!--th style="color: green;"><?php echo $model->getFormatCorrect(); ?></th-->
+						<!--th style="color: red;"><?php echo $model->getFormatIncorrect(); ?></th-->
+						<!--th><?php echo $model->getSolvedCount() < 0 ? '---' : sprintf(__('%d of %d', 'wp-pro-quiz'),
 								$model->getSolvedCount(),
-								$model->getCorrectCount() + $model->getIncorrectCount()); ?></th>
-						<th><?php echo $model->getPoints(); ?></th>
-						<th style="font-weight: bold;"><?php echo $model->getResult(); ?>%</th>
+								$model->getCorrectCount() + $model->getIncorrectCount()); ?></th-->
+                        <th><?php echo $model->isAccessFront() ? sprintf(__('%d of %d', 'wp-pro-quiz'),
+	                        $model->getPoints(),
+	                        $model->getGPoints()):'---' ; ?></th>
+						<!--th><?php echo $model->getPoints().' '. $model->getGPoints(); ?></th-->
+						<!--th style="font-weight: bold;"><?php echo $model->getResult(); ?>%</th-->
+                        <th style="font-weight: bold;"><?php echo $model->isAccessFront()?$model->isPassTest()? 'Зачет' :'Не зачет':'Не проверено'; ?></th>
+                        <th style="font-weight: bold;"><?php echo $model->isAccessFront()?'Зайдите в тест и посмотрите наши комментарии':''; ?></th>
 					</tr>
 				<?php }
 			} ?>
