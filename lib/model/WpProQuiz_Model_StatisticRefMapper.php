@@ -361,10 +361,10 @@ class WpProQuiz_Model_StatisticRefMapper extends WpProQuiz_Model_Mapper
      * @param int $endTime
      * @return WpProQuiz_Model_StatisticHistory[]
      */
-    public function fetchHistory($quizId, $page, $limit, $users = -1, $startTime = 0, $endTime = 0, $isFrontAccess=0,$isPassTest=0 )
+    public function fetchHistory($quizId, $page, $limit, $users = -1, $startTime = 0, $endTime = 0, $isNotFrontAccess=0,$isNotPassTest=0 )
     {
         $timeWhere = '';
-	    $WhereFrontPass='';
+	    $WhereNotFrontPass='';
 
         switch ($users) {
             case -3: //only anonym
@@ -389,12 +389,12 @@ class WpProQuiz_Model_StatisticRefMapper extends WpProQuiz_Model_Mapper
             $timeWhere .= ' AND create_time <= ' . (int)$endTime;
         }
 
-	    if ($isFrontAccess==1) {
-		    $WhereFrontPass .= ' AND access_front = 1';
+	    if ($isNotFrontAccess==1) {
+		    $WhereNotFrontPass .= ' AND access_front = 0';
 	    }
 
-	    if ($isPassTest==1) {
-		    $WhereFrontPass .= ' AND pass_test = 1';
+	    if ($isNotPassTest==1) {
+		    $WhereNotFrontPass .= ' AND pass_test = 0';
 	    }
         $result = $this->_wpdb->get_results(
             $this->_wpdb->prepare('
@@ -412,7 +412,7 @@ class WpProQuiz_Model_StatisticRefMapper extends WpProQuiz_Model_Mapper
 					LEFT JOIN ' . $this->_wpdb->users . ' AS u ON(u.ID = sf.user_id)
 					INNER JOIN ' . $this->_tableQuestion . ' AS q ON(q.id = s.question_id)
 				WHERE
-					sf.quiz_id = %d AND sf.is_old = 0 ' . $where . ' ' . $timeWhere . ' '.$WhereFrontPass. '
+					sf.quiz_id = %d AND sf.is_old = 0 ' . $where . ' ' . $timeWhere . ' '.$WhereNotFrontPass. '
 				GROUP BY
 					sf.statistic_ref_id
 				ORDER BY
@@ -422,7 +422,7 @@ class WpProQuiz_Model_StatisticRefMapper extends WpProQuiz_Model_Mapper
 			', $quizId, $page, $limit),
             ARRAY_A
         );
-	   
+
 
         $r = array();
 
