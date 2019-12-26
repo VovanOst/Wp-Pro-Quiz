@@ -2983,7 +2983,8 @@ jQuery(document).ready(function ($) {
                         dateTo: 0,
                         generateNav: 0,
                         isNotFrontAccess: 0,
-                        isNotPassTest:0
+                        isNotPassTest:0,
+                        isPassTest:0
                     },
 
                     changeFilter: function () {
@@ -3000,7 +3001,8 @@ jQuery(document).ready(function ($) {
                             dateTo: getTime($('#datepickerTo')),
                             generateNav: 1,
                             isNotFrontAccess:Number($('#isNotFrontAccess').is(':checked')),
-                            isNotPassTest:Number($('#isNotPassTest').is(':checked'))
+                            isNotPassTest:Number($('#isNotPassTest').is(':checked')),
+                            isPassTest:Number($('#isPassTest').is(':checked'))
 
                         });
 

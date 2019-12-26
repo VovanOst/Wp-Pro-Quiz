@@ -161,10 +161,11 @@ class WpProQuiz_View_StatisticsNew extends WpProQuiz_View_View
                             </li>
                             <li>
 		                        <?php
-		                        $isFrontAccess = '<input type="checkbox" id="isNotFrontAccess">';
-		                        $isPassTest = '<input type="checkbox" id="isNotPassTest">';
+		                        $isNotFrontAccess = '<input type="checkbox" id="isNotFrontAccess">';
+		                        $isNotPassTest = '<input type="checkbox" id="isNotPassTest">';
+		                        $isPassTest = '<input type="checkbox" id="isPassTest">';
 
-		                        printf(__('Тест не проверен: %s Незачет: %s', 'wp-pro-quiz'), $isFrontAccess, $isPassTest);
+		                        printf(__('Тест не проверен: %s Пересдача: %s Зачет: %s', 'wp-pro-quiz'), $isNotFrontAccess, $isNotPassTest,$isPassTest);
 		                        ?>
                             </li>
                             <li>

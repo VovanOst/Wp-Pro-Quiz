@@ -252,7 +252,7 @@ class WpProQuiz_Controller_Statistics extends WpProQuiz_Controller_Controller
 
 
         $statisticModel = $statisticRefMapper->fetchHistory($quizId, $start, $limit, $data['users'], $startTime,
-            $endTime, $data['isNotFrontAccess'], $data['isNotPassTest']);
+            $endTime, $data['isNotFrontAccess'], $data['isNotPassTest'], $data['isPassTest']);
 	    //$commentModel=$commentMapper->fetchByRefId(5,1,false);
 	   /* foreach ($commentModel as $modell) {
 		    $modell->GetComment();

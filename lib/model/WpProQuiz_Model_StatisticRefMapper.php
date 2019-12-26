@@ -361,7 +361,7 @@ class WpProQuiz_Model_StatisticRefMapper extends WpProQuiz_Model_Mapper
      * @param int $endTime
      * @return WpProQuiz_Model_StatisticHistory[]
      */
-    public function fetchHistory($quizId, $page, $limit, $users = -1, $startTime = 0, $endTime = 0, $isNotFrontAccess=0,$isNotPassTest=0 )
+    public function fetchHistory($quizId, $page, $limit, $users = -1, $startTime = 0, $endTime = 0, $isNotFrontAccess=0,$isNotPassTest=0, $isPassTest=0 )
     {
         $timeWhere = '';
 	    $WhereNotFrontPass='';
@@ -394,8 +394,13 @@ class WpProQuiz_Model_StatisticRefMapper extends WpProQuiz_Model_Mapper
 	    }
 
 	    if ($isNotPassTest==1) {
-		    $WhereNotFrontPass .= ' AND pass_test = 0';
+	    $WhereNotFrontPass .= ' AND pass_test = 0';
+        }
+
+	    if ($isPassTest==1) {
+		    $WhereNotFrontPass .= ' AND pass_test = 1';
 	    }
+
         $result = $this->_wpdb->get_results(
             $this->_wpdb->prepare('
 				SELECT
