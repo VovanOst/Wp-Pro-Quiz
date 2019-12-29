@@ -238,7 +238,7 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
                     <th><?php echo WpProQuiz_Helper_Until::convertToTimeString($cTime); ?></th>
                     <th><?php echo $cPoints; ?></th>
                     <th style="font-weight: bold;"><?php echo $result; ?></th>
-	                <?php  echo $this->statisticModel->isPassTest()?'<th style="color: green;">  Зачет  </th>':'<th style="color: red;">   Не зачет  </th>'?>
+	                <?php  echo $this->statisticModel->isPassTest()?'<th style="color: green;">  Зачет  </th>':'<th style="color: red;">   Пересдача  </th>'?>
                 </tr>
 
                 <tr>
@@ -274,7 +274,7 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
                 <th><?php echo WpProQuiz_Helper_Until::convertToTimeString($gTime); ?></th>
                 <th><?php echo $gPoints; ?></th>
                 <th style="font-weight: bold;"><?php echo $result; ?></th>
-	            <?php  echo $this->statisticModel->isPassTest()?'<th style="color: green;">  Зачет  </th>':'<th style="color: red;">Не зачет</th>'?>
+	            <?php  echo $this->statisticModel->isPassTest()?'<th style="color: green;">  Зачет  </th>':'<th style="color: red;">Пересдача</th>'?>
 
             </tr>
             </tfoot>
