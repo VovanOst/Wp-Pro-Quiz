@@ -66,7 +66,7 @@ class WpProQuiz_View_FrontStatisticsUser extends WpProQuiz_View_View {
 	                        $model->getGPoints()):'---' ; ?></th>
 						<!--th><?php echo $model->getPoints().' '. $model->getGPoints(); ?></th-->
 						<!--th style="font-weight: bold;"><?php echo $model->getResult(); ?>%</th-->
-                        <th style="font-weight: bold;"><?php echo $model->isAccessFront()?$model->isPassTest()? 'Зачет' :'Не зачет':'Не проверено'; ?></th>
+                        <!--th style="font-weight: bold;"--><?php echo $model->isAccessFront()?$model->isPassTest()? '<th style="color: green;">Зачет</th>' :'<th style="color: red;">Пересдача</th>':'<th style="color: black;">Не проверено</th>'; ?><!--/th-->
                         <th style="font-weight: bold;"><?php echo $model->isAccessFront()?'Зайдите в тест и посмотрите наши комментарии':''; ?></th>
 					</tr>
 				<?php }
