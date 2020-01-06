@@ -23,8 +23,9 @@ class WpProQuiz_Model_LockMapper extends WpProQuiz_Model_Mapper
             'lock_ip' => $lock->getLockIp(),
             'user_id' => $lock->getUserId(),
             'lock_type' => $lock->getLockType(),
-            'lock_date' => $lock->getLockDate()
-        ), array('%d', '%s', '%d', '%d', '%d'));
+            'lock_date' => $lock->getLockDate(),
+            'check_user_id' => $lock->getCheckUserId()
+        ), array('%d', '%s', '%d', '%d', '%d','%d'));
     }
 
     /**
@@ -111,4 +112,54 @@ class WpProQuiz_Model_LockMapper extends WpProQuiz_Model_Mapper
 
         return $this->_wpdb->delete($this->_tableLock, $where, $whereP);
     }
+
+
+	/**
+	 * @param int $lockTime
+	 * @param int $quizId
+	 * @param int $time
+	 * @param int $type
+	 * @param bool|false|int $userId в данном случае statistic_ref_id
+	 * * @param bool|false|int $userId
+	 *
+	 * @return false|int
+	 */
+	public function deleteOldLockbyCurator($lockTime, $quizId, $time, $type, $userId = false, $checkUserId= false)
+	{
+		$user = $userId === false ? '' : (' AND user_id = ' . ((int)$userId));
+		$ref = $checkUserId === false ? '' : ( ' AND check_user_id = ' . ((int)$checkUserId));
+
+		return $this->_wpdb->query(
+			$this->_wpdb->prepare(
+				"DELETE FROM {$this->_table}
+					WHERE
+						quiz_id = %d AND (lock_date + %d) < %d AND lock_type = %d " . $user. $ref,
+				$quizId,
+				$lockTime,
+				$time,
+				$type
+			)
+		);
+	}
+
+	/**
+	 * @param int $quizId
+	 * @param string $lockIp
+	 * @param int $userId  в данном случае statistic_ref_id
+	 * @param int $type
+	 * @param int $CheckUserId
+	 *
+	 * @return bool
+	 */
+	public function isLockByCurator($quizId, $lockIp, $userId, $type, $CheckUserId)
+	{
+		$c = $this->_wpdb->get_var(
+			$this->_wpdb->prepare(
+				"SELECT COUNT(*) FROM {$this->_table}
+						WHERE quiz_id = %d AND lock_ip = %s  AND lock_type = %d AND user_id = %d AND check_user_id <> %d", $quizId, $lockIp,
+				 $type, $userId, $CheckUserId));
+
+		return $c !== null && $c > 0;
+	}
+
 }

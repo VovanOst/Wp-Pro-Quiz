@@ -5,11 +5,13 @@ class WpProQuiz_Model_Lock extends WpProQuiz_Model_Model
     protected $_quizId;
     protected $_lockIp;
     protected $_lockDate;
-    protected $_userId;
+    protected $_userId;//может быть user_id или statistic_ref_id
     protected $_lockType;
+	protected $_checkUserId;// userId проверяющего тесты
 
     const TYPE_STATISTIC = 1;
     const TYPE_QUIZ = 2;
+	const TYPE_ADMIN_LOCK = 3;
 
     public function setQuizId($_quizId)
     {
@@ -70,4 +72,16 @@ class WpProQuiz_Model_Lock extends WpProQuiz_Model_Model
     {
         return $this->_lockType;
     }
+
+	public function setCheckUserId($_userId)
+	{
+		$this->_checkUserId = (int)$_userId;
+
+		return $this;
+	}
+
+	public function getCheckUserId()
+	{
+		return $this->_checkUserId;
+	}
 }

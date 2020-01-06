@@ -99,6 +99,7 @@ class WpProQuiz_Helper_DbUpgrade
 			  lock_ip varchar(100) NOT NULL,
 			  user_id bigint(20) unsigned NOT NULL,
 			  lock_type tinyint(3) unsigned NOT NULL,
+			  check_user_id bigint(20) unsigned NOT NULL,
 			  lock_date int(11) NOT NULL,
 			  PRIMARY KEY  (quiz_id,lock_ip,user_id,lock_type)
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8;

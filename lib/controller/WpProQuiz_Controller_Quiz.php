@@ -857,6 +857,7 @@ class WpProQuiz_Controller_Quiz extends WpProQuiz_Controller_Controller
             $lock->setLockDate(time());
             $lock->setLockIp($ctr->getIp());
             $lock->setLockType(WpProQuiz_Model_Lock::TYPE_QUIZ);
+            $lock->setCheckUserId(0);
 
             $lockMapper->insert($lock);
         }

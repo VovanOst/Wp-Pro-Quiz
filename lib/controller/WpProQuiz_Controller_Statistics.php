@@ -101,7 +101,8 @@ class WpProQuiz_Controller_Statistics extends WpProQuiz_Controller_Controller
                 ->setLockIp($lockIp)
                 ->setUserId($userId)
                 ->setLockType(WpProQuiz_Model_Lock::TYPE_STATISTIC)
-                ->setLockDate(time());
+                ->setLockDate(time())
+	            ->setCheckUserId(0);
 
             $lockMapper->insert($lock);
         }
@@ -332,8 +333,42 @@ class WpProQuiz_Controller_Statistics extends WpProQuiz_Controller_Controller
         $formMapper = new WpProQuiz_Model_FormMapper();
 	    $commentMapper = new WpProQuiz_Model_CommentMapper();
 	    $comment = new WpProQuiz_Model_Comment();
+        //объявление блокировки для проверяющих
 
-        $statisticUsers = $statisticUserMapper->fetchUserStatistic($refIdUserId, $quizId, $avg);
+	    //$lockMapper=new WpProQuiz_Model_LockMapper();
+	    $lockIp = 0;
+	    $quizMapper = new WpProQuiz_Model_QuizMapper();
+	    $quiz = $quizMapper->fetch($quizId);
+	    $userIdCurator = get_current_user_id();
+
+         //добавляем блокировку для того, чтобы два преподавателя не могли проверять один и тот же тест
+	    //if ($quiz->getStatisticsIpLock() > 0) {
+		    $lockMapper = new WpProQuiz_Model_LockMapper();
+		    $lockTime = 60*10;//$quiz->getStatisticsIpLock() * 60;
+
+		   // $lockMapper->deleteOldLock($lockTime, $quiz->getId(), time(), WpProQuiz_Model_Lock::TYPE_ADMIN_LOCK);
+		    $lockMapper->deleteOldLockbyCurator($lockTime, $quiz->getId(), time(), WpProQuiz_Model_Lock::TYPE_ADMIN_LOCK,$refId,$userIdCurator);
+
+		    if ($lockMapper->isLockByCurator($quizId, $lockIp, $refId,  WpProQuiz_Model_Lock::TYPE_ADMIN_LOCK,$userIdCurator)) {
+			    //return false;
+			    return json_encode(array(
+				    'html' => 'Вход в редактирования теста был произведен другим куратором'
+			    ));
+		    }
+
+		    $lock = new WpProQuiz_Model_Lock();
+		    $lock->setQuizId($quizId)
+		         ->setLockIp($lockIp)
+		         ->setUserId($refId)
+		         ->setLockType(WpProQuiz_Model_Lock::TYPE_ADMIN_LOCK)
+		         ->setLockDate(time())
+			     ->setCheckUserId($userIdCurator);
+
+		    $lockMapper->insert($lock);
+	    //}
+
+
+	    $statisticUsers = $statisticUserMapper->fetchUserStatistic($refIdUserId, $quizId, $avg);
 
         $output = array();
 
