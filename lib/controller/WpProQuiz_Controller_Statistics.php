@@ -347,7 +347,7 @@ class WpProQuiz_Controller_Statistics extends WpProQuiz_Controller_Controller
 		    $lockTime = 60*30;//$quiz->getStatisticsIpLock() * 60;
 
 		   // $lockMapper->deleteOldLock($lockTime, $quiz->getId(), time(), WpProQuiz_Model_Lock::TYPE_ADMIN_LOCK);
-		    $lockMapper->deleteOldLockbyCurator($lockTime, $quiz->getId(), time(), WpProQuiz_Model_Lock::TYPE_ADMIN_LOCK,$refId,$userIdCurator);
+		    $lockMapper->deleteOldLockbyCurator($lockTime, $quiz->getId(), time(), WpProQuiz_Model_Lock::TYPE_ADMIN_LOCK,$refId,false);//$userIdCurator
 
 		    if ($lockMapper->isLockByCurator($quizId, $lockIp, $refId,  WpProQuiz_Model_Lock::TYPE_ADMIN_LOCK,$userIdCurator)) {
 			    //return false;

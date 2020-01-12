@@ -102,6 +102,7 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
                 border-bottom: 1px solid #000;
             }
         </style>
+        <a class="button-secondary" href="<?php home_url()?>account/?user=<?php echo get_current_user_id(); ?>&tab=moi_rezultaty_52">Назад к результатам тестов</a>
         <h2><?php printf(__('User statistics: %s', 'wp-pro-quiz'), esc_html($this->userName)); ?></h2>
 		<?php if ($this->avg) { ?>
         <h2>
@@ -114,7 +115,6 @@ class WpProQuiz_View_FrontStatisticsUserDetails extends WpProQuiz_View_View {
         <h2><?php echo date_i18n(get_option('wpProQuiz_statisticTimeFormat', 'Y/m/d g:i A'),
 				$this->statisticModel->getCreateTime()); ?></h2>
 	<?php } ?>
-
 		<?php $this->formTable(); ?>
 		<?php if($this->statisticModel->isAccessFront())
             {
